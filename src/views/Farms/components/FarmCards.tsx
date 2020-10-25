@@ -65,6 +65,9 @@ const FarmCards: React.FC = () => {
 
   return (
     <StyledCards>
+      <StyledRow>
+
+      </StyledRow>
       {!!rows[0].length ? (
         rows.map((farmRow, i) => (
           <StyledRow key={i}>
@@ -78,7 +81,7 @@ const FarmCards: React.FC = () => {
         ))
       ) : (
         <StyledLoadingWrapper>
-          <Loader text="Cooking the rice ..." />
+          <Loader text="Stacy is coming..." />
         </StyledLoadingWrapper>
       )}
     </StyledCards>
@@ -126,24 +129,26 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
 
   const poolActive = true // startTime * 1000 - Date.now() <= 0
 
+  console.log(farm)
   return (
     <StyledCardWrapper>
       {farm.tokenSymbol === 'SUSHI' && <StyledCardAccent />}
       <Card>
         <CardContent>
           <StyledContent>
-            <CardIcon>{farm.icon}</CardIcon>
-            <StyledTitle>{farm.name}</StyledTitle>
+            <CardIcon tokenSymbol={farm.tokenSymbol}></CardIcon>
             <StyledDetails>
-              <StyledDetail>Deposit {farm.lpToken.toUpperCase()}</StyledDetail>
-              <StyledDetail>Earn {farm.earnToken.toUpperCase()}</StyledDetail>
+              <StyledDetail>{farm.tokenSymbol.toLowerCase()}</StyledDetail>
             </StyledDetails>
             <Spacer />
             <Button
               disabled={!poolActive}
-              text={poolActive ? 'Select' : undefined}
+              text={poolActive ? 'select 🚀' : undefined}
               to={`/farms/${farm.id}`}
-            >
+              size='sm'
+              customColor='white'
+              variant='secondary'
+              >
               {!poolActive && (
                 <Countdown
                   date={new Date(startTime * 1000)}
@@ -152,9 +157,8 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               )}
             </Button>
             <StyledInsight>
-              <span>APY</span>
               <span>
-                {farm.apy
+                APY {farm.apy
                   ? `${farm.apy
                       .times(new BigNumber(100))
                       .toNumber()
@@ -224,6 +228,7 @@ const StyledCardAccent = styled.div`
 
 const StyledCards = styled.div`
   width: 900px;
+  margin-top:200px;
   @media (max-width: 768px) {
     width: 100%;
   }
@@ -238,7 +243,7 @@ const StyledLoadingWrapper = styled.div`
 
 const StyledRow = styled.div`
   display: flex;
-  margin-bottom: ${(props) => props.theme.spacing[4]}px;
+  margin-bottom: ${(props) => props.theme.spacing[6]}px;
   flex-flow: row wrap;
   @media (max-width: 768px) {
     width: 100%;
@@ -249,7 +254,8 @@ const StyledRow = styled.div`
 
 const StyledCardWrapper = styled.div`
   display: flex;
-  width: calc((900px - ${(props) => props.theme.spacing[4]}px * 2) / 3);
+  height: 422px;
+  width: calc((900px - ${(props) => props.theme.spacing[6]}px * 2) / 3);
   position: relative;
 `
 
@@ -268,33 +274,32 @@ const StyledContent = styled.div`
 `
 
 const StyledSpacer = styled.div`
-  height: ${(props) => props.theme.spacing[4]}px;
-  width: ${(props) => props.theme.spacing[4]}px;
+  height: ${(props) => props.theme.spacing[6]}px;
+  width: ${(props) => props.theme.spacing[6]}px;
 `
 
 const StyledDetails = styled.div`
-  margin-top: ${(props) => props.theme.spacing[2]}px;
   text-align: center;
 `
 
 const StyledDetail = styled.div`
-  color: ${(props) => props.theme.color.grey[500]};
+  font-family: third-rail;
+  font-size:50px;
+  font: normal normal normal 60px/1.4em;
+  text-shadow: #c8c8c8 1px 1px 0px, #b4b4b4 0px 2px 0px, #a0a0a0 0px 3px 0px, rgba(140, 140, 140, 0.498039) 0px 4px 0px, #787878 0px 0px 0px, rgba(0, 0, 0, 0.498039) 0px 5px 10px;
+  color: ${(props) => props.theme.color.purple};
 `
 
 const StyledInsight = styled.div`
-  display: flex;
+  display: block;
   justify-content: space-between;
-  box-sizing: border-box;
-  border-radius: 8px;
-  background: #fffdfa;
-  color: #aa9584;
+  color: ${props => props.theme.color.purple};
   width: 100%;
-  margin-top: 12px;
+  margin-top: 40px;
   line-height: 32px;
-  font-size: 13px;
-  border: 1px solid #e6dcd5;
-  text-align: center;
+  font-size: 30px;
   padding: 0 12px;
+  text-align: center;
 `
 
 export default FarmCards

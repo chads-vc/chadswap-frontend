@@ -34,12 +34,11 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
 
         <div style={{ display: 'flex' }}>
           <StyledBalanceWrapper>
-            <CardIcon>
-              <span>🍣</span>
+            <CardIcon tokenSymbol="STACY">
             </CardIcon>
             <StyledBalance>
               <Value value={getBalanceNumber(sushiBalance)} />
-              <Label text="SUSHI Balance" />
+              <Label text="STACY Balance" />
             </StyledBalance>
           </StyledBalanceWrapper>
         </div>
@@ -48,13 +47,11 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
         <Button
           href={`https://etherscan.io/address/${account}`}
           text="View on Etherscan"
-          variant="secondary"
         />
         <Spacer />
         <Button
           onClick={handleSignOutClick}
           text="Sign out"
-          variant="secondary"
         />
       </ModalContent>
       <ModalActions>

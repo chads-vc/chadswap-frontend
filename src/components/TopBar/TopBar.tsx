@@ -5,7 +5,7 @@ import Container from '../Container'
 import Logo from '../Logo'
 
 import AccountButton from './components/AccountButton'
-import Nav from './components/Nav'
+import HomeButton from './components/HomeButton'
 
 interface TopBarProps {
   onPresentMobileMenu: () => void
@@ -19,8 +19,8 @@ const TopBar: React.FC<TopBarProps> = ({ onPresentMobileMenu }) => {
           <StyledLogoWrapper>
             <Logo />
           </StyledLogoWrapper>
-          <Nav />
           <StyledAccountButtonWrapper>
+            <HomeButton />
             <AccountButton />
           </StyledAccountButtonWrapper>
         </StyledTopBarInner>
@@ -59,7 +59,7 @@ const StyledAccountButtonWrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: flex-end;
-  width: 156px;
+  margin-top:120px;
   @media (max-width: 400px) {
     justify-content: center;
     width: auto;

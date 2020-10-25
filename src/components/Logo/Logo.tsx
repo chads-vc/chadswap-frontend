@@ -19,8 +19,8 @@ const StyledLogo = styled(Link)`
   display: flex;
   justify-content: center;
   margin: 0;
-  top:10px;
-  min-height: 154px;
+  top:0px;
+  min-height: 130px;
   min-width: 44px;
   padding: 0;
   text-decoration: none;
@@ -30,7 +30,7 @@ const StyledLogo = styled(Link)`
 const StyledText = styled.div`
   color: ${(props) => props.theme.color.pink};
   font-size: 20px;
-  top:130px;
+  top:110px;
   position: absolute;
   margin-left: ${(props) => props.theme.spacing[2]}px;
   @media (max-width: 400px) {

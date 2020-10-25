@@ -1,12 +1,15 @@
 import React, { useContext, useMemo } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 
-import gradientBgFirst from '../../assets/img/small-button-bevel.png'
+import gradientBgFirst from '../../assets/img/button-bg-first-third.png'
+import gradientBgSecond from '../../assets/img/button-bg-second-third.png'
+import gradientBgThird from '../../assets/img/button-bg-third-third.png'
+import gradientBgAll from '../../assets/img/button-bg-all-thirds.png'
 
 import { Link } from 'react-router-dom'
 
 interface ButtonProps {
-  customColor?: 'purple' | 'blue' | 'pink' | 'white',
+  customColor?: 'purple' | 'blue' | 'pink',
   backgroundGradient?: string,
   children?: React.ReactNode,
   disabled?: boolean,
@@ -34,7 +37,15 @@ const Button: React.FC<ButtonProps> = ({
 
   let backgroundUrl: string
 
-  let buttonColor: string = color.purple
+  let buttonColor: string
+  switch (variant) {
+    case 'secondary':
+      buttonColor = color.grey[500]
+      break
+    case 'default':
+    default:
+      buttonColor = color.primary.main
+  }
 
   switch (customColor) {
     case 'purple':
@@ -46,11 +57,25 @@ const Button: React.FC<ButtonProps> = ({
     case 'pink':
       buttonColor = "#BA83F0"
       break
-    case 'white':
-      buttonColor = "#FFFFFF"
+    default:
+      buttonColor = color.primary.main
+  }
+
+  switch (backgroundGradient) {
+    case 'first':
+      backgroundUrl = gradientBgFirst
+      break
+    case 'second':
+      backgroundUrl = gradientBgSecond
+      break
+    case 'third':
+      backgroundUrl = gradientBgThird
+      break
+    case 'all':
+      backgroundUrl = gradientBgAll
       break
     default:
-      buttonColor = color.purple
+      backgroundUrl = gradientBgAll
   }
 
   let boxShadow: string
@@ -59,20 +84,26 @@ const Button: React.FC<ButtonProps> = ({
   let fontSize: number
   switch (size) {
     case 'sm':
-      buttonPadding = spacing[5]
-      buttonSize = 40
+      boxShadow = `4px 4px 8px ${color.grey[300]},
+        -8px -8px 16px ${color.grey[100]}FF;`
+      buttonPadding = spacing[3]
+      buttonSize = 36
       fontSize = 14
       break
     case 'lg':
-      buttonPadding = spacing[5]
+      boxShadow = `6px 6px 12px ${color.grey[300]},
+        -12px -12px 24px ${color.grey[100]}ff;`
+      buttonPadding = spacing[4]
       buttonSize = 72
-      fontSize = 27
+      fontSize = 16
       break
     case 'md':
     default:
-      buttonPadding = spacing[5]
-      buttonSize = 50
-      fontSize = 27
+      boxShadow = `6px 6px 12px ${color.grey[300]},
+        -12px -12px 24px -2px ${color.grey[100]}ff;`
+      buttonPadding = spacing[4]
+      buttonSize = 56
+      fontSize = 16
   }
 
   const ButtonChild = useMemo(() => {
@@ -85,61 +116,45 @@ const Button: React.FC<ButtonProps> = ({
     }
   }, [href, text, to])
 
-  if (variant === 'secondary') { 
-    return (
-      <StyledButtonSecondary
-        color={buttonColor}
-        disabled={disabled}
-        fontSize={fontSize}
-        onClick={onClick}
-        padding={buttonPadding}
-        size={buttonSize}
-      >
-      {children}
-      {ButtonChild}
-      </StyledButtonSecondary>
-    )
-  } else {
-    return (
-      <StyledButton
+  return (
+    <StyledButton
       boxShadow={boxShadow}
       color={buttonColor}
-      backgroundUrl={gradientBgFirst}
+      backgroundUrl={backgroundUrl}
       disabled={disabled}
       fontSize={fontSize}
       onClick={onClick}
       padding={buttonPadding}
       size={buttonSize}
-      >
+    >
       {children}
       {ButtonChild}
-      </StyledButton>
-    )
-  } 
+    </StyledButton>
+  )
 }
 
 interface StyledButtonProps {
-  boxShadow?: string,
-  backgroundUrl?: string,
+  boxShadow: string,
+  backgroundUrl: string,
   color: string,
   disabled?: boolean,
   fontSize: number,
   padding: number,
-  size?: number
+  size: number
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
   align-items: center;
   font-weight: bold;
   line-height: 0.9;
+  text-transform: uppercase;
   background-color: transparent;
   border: 0;
   color: ${props => !props.disabled ? props.color : `${props.color}55`};
   cursor: pointer;
   display: flex;
   font-size: ${props => props.fontSize}px;
-  font-weight: 400;
-  text-transform: lowercase;
+  font-weight: 700;
   height: ${props => props.size}px;
   justify-content: center;
   outline: none;
@@ -150,54 +165,10 @@ const StyledButton = styled.button<StyledButtonProps>`
   background-image: url(${props => props.backgroundUrl});
   background-size: 100% 100%;
   box-shadow: none;
-
-  white-space:nowrap;
   &:hover {
     opacity: 0.9;
   }
 `
-
-const StyledButtonSecondary = styled.button<StyledButtonProps>`
-  align-items: center;
-  font-weight: bold;
-  line-height: 0.9;
-  border: 0;
-  color: ${props => !props.disabled ? props.color : `${props.color}55`};
-  cursor: pointer;
-  display: flex;
-  font-size: ${props => props.fontSize}px;
-  font-weight: 400;
-  text-transform: lowercase;
-  height: ${props => props.size}px;
-  width: 103px;
-  justify-content: center;
-  outline: none;
-  padding-left: ${props => props.padding}px;
-  padding-right: ${props => props.padding}px;
-  pointer-events: ${props => !props.disabled ? undefined : 'none'};
-  box-shadow: none;
-  transition: all 0.2s ease, visibility 0s;
-  border-radius: 50px;
-  background: linear-gradient(141deg, #a54daa 0%, #1b77cd 100%);
-  background-image: linear-gradient(141deg, rgb(165, 77, 170) 0%, rgb(27, 119, 205) 100%);
-  background-position-x: initial;
-  background-position-y: initial;
-  background-size: initial;
-  background-repeat-x: initial;
-  background-repeat-y: initial;
-  background-attachment: initial;
-  background-origin: initial;
-  background-clip: initial;
-  background-color: initial;
-
-
-  white-space:nowrap;
-  &:hover {
-    opacity: 0.9;
-  }
-`
-
-
 
 const StyledLink = styled(Link)`
   align-items: center;

@@ -4,6 +4,11 @@
   src: local('arian-light'), url(./assets/fonts/arian-light.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'third-rail';
+  src: local('third-rail'), url(./assets/fonts/third-rail.ttf) format('truetype');
+}
+
 body {
   background: #fff8ee;
   margin: 0;

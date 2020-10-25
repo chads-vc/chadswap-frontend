@@ -1,5 +1,7 @@
 import BigNumber from 'bignumber.js/bignumber'
 
+
+
 export const SUBTRACT_GAS_LIMIT = 100000
 
 const ONE_MINUTE_IN_SECONDS = new BigNumber(60)
@@ -50,6 +52,85 @@ export const contractAddresses = {
   },
 }
 
+
+export const supportedPools = [
+  {
+    pid: 0,
+    lpAddresses: {
+      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+    },
+    tokenAddresses: {
+      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+    },
+    symbol: 'STACY-ETH UNI-V2 LP',
+    tokenSymbol: 'STACY',
+    icon: "",
+  },
+  {
+    pid: 1,
+    lpAddresses: {
+      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+    },
+    tokenAddresses: {
+      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+    },
+    symbol: 'CHADS-ETH UNI-V2 LP',
+    tokenSymbol: 'CHADS',
+    icon: "",
+  },
+  {
+    pid: 2,
+    lpAddresses: {
+      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+    },
+    tokenAddresses: {
+      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+    },
+    symbol: 'EMTRG-ETH UNI-V2 LP',
+    tokenSymbol: 'EMTRG',
+    icon: "",
+  },
+  {
+    pid: 3,
+    lpAddresses: {
+      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+    },
+    tokenAddresses: {
+      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+    },
+    symbol: 'USDC-ETH UNI-V2 LP',
+    tokenSymbol: 'USDC',
+    icon: "",
+  },
+  {
+    pid: 4,
+    lpAddresses: {
+      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+    },
+    tokenAddresses: {
+      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+    },
+    symbol: 'USDT-ETH UNI-V2 LP',
+    tokenSymbol: 'USDT',
+    icon: "",
+  },
+  {
+    pid: 5,
+    lpAddresses: {
+      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+    },
+    tokenAddresses: {
+      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+    },
+    symbol: 'WBTC-ETH UNI-V2 LP',
+    tokenSymbol: 'WBTC',
+    icon: "",
+  },
+
+]
+
+
+
 /*
 UNI-V2 LP Address on mainnet for reference
 ==========================================
@@ -68,6 +149,8 @@ UNI-V2 LP Address on mainnet for reference
 12 SUSHI 0xce84867c3c02b05dc570d0135103d3fb9cc19433
 */
 
+
+/*
 export const supportedPools = [
   {
     pid: 12,
@@ -304,3 +387,4 @@ export const supportedPools = [
     icon: '🐊',
   },
 ]
+*/

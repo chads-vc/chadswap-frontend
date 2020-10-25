@@ -12,6 +12,7 @@ export const red = {
 }
 
 export const pink = "#E08DE3" 
+export const purple ="#8015E8"
 
 export const grey = {
   100: '#f7f4f2',
