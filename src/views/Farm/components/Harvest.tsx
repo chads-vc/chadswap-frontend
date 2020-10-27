@@ -9,29 +9,64 @@ import Value from '../../../components/Value'
 import useEarnings from '../../../hooks/useEarnings'
 import useReward from '../../../hooks/useReward'
 import { getBalanceNumber } from '../../../utils/formatBalance'
+import { calculateAPY, StakedValue } from '../../../utils'
+import useAllStakedValue from '../../../hooks/useAllStakedValue'
+import useFarms from '../../../hooks/useFarms'
+import BigNumber from 'bignumber.js'
 
 interface HarvestProps {
-  pid: number
+  fpid: number
 }
 
-const Harvest: React.FC<HarvestProps> = ({ pid }) => {
-  const earnings = useEarnings(pid)
+const Harvest: React.FC<HarvestProps> = ({ fpid }) => {
+  const earnings = useEarnings(fpid)
   const [pendingTx, setPendingTx] = useState(false)
-  const { onReward } = useReward(pid)
+  const { onReward } = useReward(fpid)
+
+
+  const [farms] = useFarms()
+  const stakedValue = useAllStakedValue()
+
+  const sushiIndex = farms.findIndex(
+    ({ tokenSymbol }) => tokenSymbol === 'SUSHI',
+  )
+
+  const sushiPrice =
+    sushiIndex >= 0 && stakedValue[sushiIndex]
+      ? stakedValue[sushiIndex].tokenPriceInWeth
+      : new BigNumber(0)
+
+  const farmIndex = farms.findIndex(
+    ({ pid }) => pid === fpid, 
+  )
+
+  let apy = calculateAPY(stakedValue[farmIndex], sushiPrice) 
 
   return (
-    <Card>
+    <Card width={380} height={211} flipped={true}>
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
-            <CardIcon>🍣</CardIcon>
-            <Value value={getBalanceNumber(earnings)} />
-            <Label text="SUSHI Earned" />
+            <Value fontSize={55} value={getBalanceNumber(earnings)} />
+            <Label fontSize={38} text="stacy earned" />
           </StyledCardHeader>
+          <StyledCardHeader2>
+            <Label fontSize={23} text={`APY ${apy ? `${apy
+                      .times(new BigNumber(100))
+                      .toNumber()
+                      .toLocaleString('en-US')
+                      .slice(0, -1)}%`
+                  : 'Loading ...' }`}
+             />
+          </StyledCardHeader2>
           <StyledCardActions>
             <Button
               disabled={!earnings.toNumber() || pendingTx}
-              text={pendingTx ? 'Collecting SUSHI' : 'Harvest'}
+              variant="secondary"
+              customColor="white"
+              text={pendingTx ? 'collecting...' : 'harvest'}
+              buttonWidth={221}
+              size="cs"
               onClick={async () => {
                 setPendingTx(true)
                 await onReward()
@@ -49,12 +84,28 @@ const StyledCardHeader = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  line-height:40px;
+  padding-top:5px;
+  flex:1;
 `
+
+
+const StyledCardHeader2 = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  line-height:23px;
+  padding-top:10px;
+  flex:0.5;
+`
+
+
 const StyledCardActions = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => props.theme.spacing[6]}px;
+  margin-top: 10px;
   width: 100%;
+  flex:1;
 `
 
 const StyledSpacer = styled.div`

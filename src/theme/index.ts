@@ -28,6 +28,7 @@ const theme = {
     5: 32,
     6: 48,
     7: 64,
+    8: 108
   },
   topBarSize: 72
 }

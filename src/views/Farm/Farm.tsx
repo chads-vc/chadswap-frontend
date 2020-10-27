@@ -21,7 +21,7 @@ const Farm: React.FC = () => {
     lpTokenAddress,
     tokenAddress,
     earnToken,
-    name,
+    tokenSymbol,
     icon,
   } = useFarm(farmId) || {
     pid: 0,
@@ -29,7 +29,7 @@ const Farm: React.FC = () => {
     lpTokenAddress: '',
     tokenAddress: '',
     earnToken: '',
-    name: '',
+    tokenSymbol: '',
     icon: '',
   }
 
@@ -54,17 +54,18 @@ const Farm: React.FC = () => {
     return earnToken.toUpperCase()
   }, [earnToken])
 
+  console.log(farmId, pid, tokenSymbol) 
   return (
     <>
       <PageHeader
-        icon={icon}
-        subtitle={`Deposit ${lpTokenName}  Tokens and earn ${earnTokenName}`}
-        title={name}
+        tokenSymbol={tokenSymbol}
+        title={tokenSymbol}
+        tokenAddress={tokenAddress}
       />
       <StyledFarm>
         <StyledCardsWrapper>
           <StyledCardWrapper>
-            <Harvest pid={pid} />
+            <Harvest fpid={pid} />
           </StyledCardWrapper>
           <Spacer />
           <StyledCardWrapper>
@@ -75,11 +76,6 @@ const Farm: React.FC = () => {
             />
           </StyledCardWrapper>
         </StyledCardsWrapper>
-        <Spacer size="lg" />
-        <StyledInfo>
-          ⭐️ Every time you stake and unstake LP tokens, the contract will
-          automagically harvest SUSHI rewards for you!
-        </StyledInfo>
         <Spacer size="lg" />
       </StyledFarm>
     </>
@@ -92,23 +88,29 @@ const StyledFarm = styled.div`
   flex-direction: column;
   @media (max-width: 768px) {
     width: 100%;
+    min-height:500px;
   }
 `
 
 const StyledCardsWrapper = styled.div`
+
+  width: 900px;
+  height:211px;
   display: flex;
-  width: 600px;
   @media (max-width: 768px) {
     width: 100%;
-    flex-flow: column nowrap;
-    align-items: center;
+    display:block;
+    min-height:100%;
   }
+  align-items:center;
+  justify-content:center;
 `
 
 const StyledCardWrapper = styled.div`
-  display: flex;
-  flex: 1;
+  margin:auto;
   flex-direction: column;
+  width:380px;
+  height:211px;
   @media (max-width: 768px) {
     width: 80%;
   }

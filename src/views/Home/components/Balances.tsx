@@ -16,8 +16,6 @@ import { getSushiAddress, getSushiSupply } from '../../../sushi/utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 
 const PendingRewards: React.FC = () => {
-  const [start, setStart] = useState(0)
-  const [end, setEnd] = useState(0)
 
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
   const allEarnings = useAllEarnings()
@@ -28,12 +26,6 @@ const PendingRewards: React.FC = () => {
       .toNumber()
   }
 
-  const [farms] = useFarms()
-
-  useEffect(() => {
-    setStart(end)
-    setEnd(sumEarning)
-  }, [end, sumEarning])
 
   return (
     <StyledLabelValueWrapper>

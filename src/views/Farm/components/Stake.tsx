@@ -69,32 +69,44 @@ const Stake: React.FC<StakeProps> = ({ lpContract, pid, tokenName }) => {
   }, [onApprove, setRequestedApproval])
 
   return (
-    <Card>
+    <Card width={380} height={211} flipped={true}>
       <CardContent>
         <StyledCardContentInner>
           <StyledCardHeader>
-            <CardIcon>👨🏻‍🍳</CardIcon>
-            <Value value={getBalanceNumber(stakedBalance)} />
-            <Label text={`${tokenName} Tokens Staked`} />
+            <Value fontSize={55} value={getBalanceNumber(stakedBalance)} />
+            <Label fontSize={38} text="LP tokens staked" />
           </StyledCardHeader>
           <StyledCardActions>
             {!allowance.toNumber() ? (
               <Button
                 disabled={requestedApproval}
                 onClick={handleApprove}
-                text={`Approve ${tokenName}`}
+                text={`approve`}
+                variant="secondary"
+                customColor="white"
+                buttonWidth={175}
+                size="cs"
               />
             ) : (
               <>
                 <Button
+                  text="stake"
+                  onClick={onPresentDeposit}
+                  variant="secondary"
+                  customColor="white"
+                  buttonWidth={145}
+                  size="cs"
+                />
+                <StyledActionSpacer/>
+                <Button
                   disabled={stakedBalance.eq(new BigNumber(0))}
-                  text="Unstake"
+                  text="unstake"
+                  variant="secondary"
+                  buttonWidth={145}
+                  customColor="white"
+                  size="cs"
                   onClick={onPresentWithdraw}
                 />
-                <StyledActionSpacer />
-                <IconButton onClick={onPresentDeposit}>
-                  <AddIcon />
-                </IconButton>
               </>
             )}
           </StyledCardActions>
@@ -108,12 +120,16 @@ const StyledCardHeader = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  line-height:40px;
+  padding-top:5px;
+  flex:1;
 `
 const StyledCardActions = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: ${(props) => props.theme.spacing[6]}px;
+  margin-top:44px;
   width: 100%;
+  flex:1;
 `
 
 const StyledActionSpacer = styled.div`

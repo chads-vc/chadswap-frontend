@@ -11,6 +11,7 @@ import Spacer from '../../../components/Spacer'
 import useSushi from '../../../hooks/useSushi'
 import Balances from '../../Home/components/Balances'
 import PoolStats from '../../Home/components/PoolStats'
+import PopCherries from '../../Home/components/PopCherries'
 
 const InfoBar: React.FC = () => {
    return (
@@ -25,7 +26,8 @@ const InfoBar: React.FC = () => {
      <StyledSpacer/>
       <StyledCardWrapper>
        <Card flipped={true}>
-         <CardContent>
+         <CardContent divPadding="sm">
+           <PopCherries/>
         </CardContent>
        </Card>
      </StyledCardWrapper>

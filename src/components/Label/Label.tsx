@@ -19,7 +19,7 @@ interface StyledLabelProps {
 const StyledLabel = styled.div<StyledLabelProps>`
   color: ${(props) => props.theme.color.purple};
   width: ${(props) => props.horizontal ? "50%": "100%"};
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.fontSize}px;
 `
 
 export default Label

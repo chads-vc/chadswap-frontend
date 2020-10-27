@@ -50,7 +50,7 @@ const StyledNavWrapper = styled.div`
   display: flex;
   flex: 1;
   justify-content: center;
-  @media (max-width: 400px) {
+  @media (max-width: 800px) {
     display: none;
   }
 `
@@ -60,9 +60,10 @@ const StyledAccountButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top:120px;
-  @media (max-width: 400px) {
+  @media (max-width: 800px) {
     justify-content: center;
     width: auto;
+    margin-top:300px;
   }
 `
 
@@ -73,7 +74,7 @@ const StyledMenuButton = styled.button`
   outline: 0;
   padding: 0;
   display: none;
-  @media (max-width: 400px) {
+  @media (max-width: 800px) {
     align-items: center;
     display: flex;
     height: 44px;

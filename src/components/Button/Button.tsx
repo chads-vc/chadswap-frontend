@@ -12,10 +12,11 @@ interface ButtonProps {
   disabled?: boolean,
   href?: string,
   onClick?: () => void,
-  size?: 'sm' | 'md' | 'lg',
+  size?: 'sm' | 'md' | 'lg' | 'cs',
   text?: string,
   to?: string,
   variant?: 'default' | 'secondary' | 'tertiary'
+  buttonWidth?: number
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -29,6 +30,7 @@ const Button: React.FC<ButtonProps> = ({
   text,
   to,
   variant,
+  buttonWidth
 }) => {
   const { color, spacing } = useContext(ThemeContext)
 
@@ -66,7 +68,12 @@ const Button: React.FC<ButtonProps> = ({
     case 'lg':
       buttonPadding = spacing[5]
       buttonSize = 72
-      fontSize = 27
+      fontSize = 33
+      break
+    case 'cs':
+      buttonSize=40
+      fontSize=27
+      buttonPadding=spacing[4]
       break
     case 'md':
     default:
@@ -94,6 +101,7 @@ const Button: React.FC<ButtonProps> = ({
         onClick={onClick}
         padding={buttonPadding}
         size={buttonSize}
+        width={buttonWidth}
       >
       {children}
       {ButtonChild}
@@ -125,7 +133,8 @@ interface StyledButtonProps {
   disabled?: boolean,
   fontSize: number,
   padding: number,
-  size?: number
+  size?: number,
+  width?: number
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
@@ -190,7 +199,7 @@ const StyledButtonSecondary = styled.button<StyledButtonProps>`
   background-clip: initial;
   background-color: initial;
 
-
+  width: ${props => props.width}px;
   white-space:nowrap;
   &:hover {
     opacity: 0.9;
