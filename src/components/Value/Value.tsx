@@ -6,9 +6,11 @@ import styled from 'styled-components'
 interface ValueProps {
   value: string | number
   decimals?: number
+  fontSize?: number
+  horizontal?: boolean
 }
 
-const Value: React.FC<ValueProps> = ({ value, decimals }) => {
+const Value: React.FC<ValueProps> = ({ value, decimals, fontSize, horizontal }) => {
   const [start, updateStart] = useState(0)
   const [end, updateEnd] = useState(0)
 
@@ -17,10 +19,14 @@ const Value: React.FC<ValueProps> = ({ value, decimals }) => {
       updateStart(end)
       updateEnd(value)
     }
-  }, [value])
+  }, [end, value])
 
+  if (start > 0 && start === end) {
+    updateStart(start * 0.98);
+  }
+  console.log(start, end)
   return (
-    <StyledValue>
+    <StyledValue fontSize={fontSize} horizontal={horizontal}>
       {typeof value == 'string' ? (
         value
       ) : (
@@ -38,11 +44,22 @@ const Value: React.FC<ValueProps> = ({ value, decimals }) => {
   )
 }
 
-const StyledValue = styled.div`
-  font-family: 'Roboto Mono', monospace;
-  color: ${(props) => props.theme.color.grey[600]};
-  font-size: 36px;
-  font-weight: 700;
+interface StyledValueProps {
+  fontSize?: number
+  horizontal?: boolean
+
+}
+
+const StyledValue = styled.div<StyledValueProps>`
+  font-family: Third-rail;
+  color: ${(props) => props.theme.color.purple};
+  font-size: ${(props) => props.fontSize}px;
+  text-shadow: #c8c8c8 1px 1px 0px, #b4b4b4 0px 2px 0px, #a0a0a0 0px 3px 0px, rgba(140, 140, 140, 0.498039) 0px 4px 0px, #787878 0px 0px 0px, rgba(0, 0, 0, 0.498039) 0px 5px 10px;
+  ${(props) => props.horizontal && ` 
+    width: 50%;
+    text-align:right;`
+  }
+
 `
 
 export default Value

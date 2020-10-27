@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { UseWalletProvider } from 'use-wallet'
 import DisclaimerModal from './components/DisclaimerModal'
+import styled from 'styled-components'
 import MobileMenu from './components/MobileMenu'
 import TopBar from './components/TopBar'
 import FarmsProvider from './contexts/Farms'
@@ -33,6 +34,7 @@ const App: React.FC = () => {
         <SiteBackground backgroundIndex={1}/>
         <TopBar onPresentMobileMenu={handlePresentMobileMenu} />
         <MobileMenu onDismiss={handleDismissMobileMenu} visible={mobileMenu} />
+        <StyledAppWrapper>
         <Switch>
           <Route path="/" exact>
             <Home />
@@ -44,6 +46,7 @@ const App: React.FC = () => {
             <Stake />
           </Route>
         </Switch>
+      </StyledAppWrapper>
       </Router>
       <Disclaimer />
     </Providers>
@@ -89,5 +92,9 @@ const Disclaimer: React.FC = () => {
 
   return <div />
 }
+
+const StyledAppWrapper = styled.div`
+  margin-top:150px;
+`
 
 export default App

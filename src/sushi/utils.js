@@ -172,6 +172,21 @@ export const getStaked = async (masterChefContract, pid, account) => {
   }
 }
 
+export const getNextPopCherryTimestamp = async (sushiContract, account) => {
+  return 10000
+
+}
+
+
+export const popCherry = async (sushiContract, account) => {
+  return sushiContract.methods.approve(account.address, ethers.constants.MaxUint256)
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      console.log(tx)
+      return tx.transactionHash
+    })
+}
+
 export const redeem = async (masterChefContract, account) => {
   let now = new Date().getTime() / 1000
   if (now >= 1597172400) {

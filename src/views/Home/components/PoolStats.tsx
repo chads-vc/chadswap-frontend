@@ -65,15 +65,42 @@ const Balances: React.FC = () => {
     <StyledWrapper>
         <StyledBalances>
             <StyledBalance>
-              <StyledLabelValueWrapper>
-                <Label text="my stacy balance" />
+             <StyledLabelValueWrapper>
+                <Label text="tvl:" horizontal={true} />
                 <Value
-                  value={!!account ? getBalanceNumber(sushiBalance) : 'Locked'}
+                  value={"$40,000,000" }
+                  horizontal={true}
+                  fontSize={23}
                 />
               </StyledLabelValueWrapper>
-              <div style={{'width': 7, 'height': 7}}/>
-              <PendingRewards />
-            </StyledBalance>
+              <div style={{'width': 11, 'height': 11}}/>
+              <StyledLabelValueWrapper>
+                <Label text="stacy price:" horizontal={true} />
+                <Value
+                  value={!!account ? "$0.069" : 'Locked'}
+                  horizontal={true}
+                  fontSize={23}
+                />
+              </StyledLabelValueWrapper>
+              <div style={{'width': 9, 'height': 9}}/>
+               <StyledLabelValueWrapper>
+                <Label text="stacy marketcap:" horizontal={true} />
+                <Value
+                  value={!!account ? "$420,000,000" : 'Locked'}
+                  horizontal={true}
+                  fontSize={23}
+                />
+              </StyledLabelValueWrapper>
+              <div style={{'width': 9, 'height': 9}}/>
+                <StyledLabelValueWrapper>
+                  <Label text="stacy/eth uniswap pool:" horizontal={true} />
+                <Value
+                  value={!!account ? "$69,000,000" : 'Locked'}
+                  horizontal={true}
+                  fontSize={23}
+                />
+              </StyledLabelValueWrapper>
+         </StyledBalance>
           </StyledBalances>
 
           {/*
@@ -105,17 +132,17 @@ const StyledBalances = styled.div`
 `
 
 const StyledLabelValueWrapper = styled.div`
-  font-size:28px;
-  line-height:27px;
-  white-space:nowrap;
+  font-size:18px;
+  line-height:15px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const StyledBalance = styled.div`
-  align-items: center;
-  text-align: center;
   display: flex;
-  flex-direction: column;
   flex: 1;
+  flex-direction:column;
 `
 
 export default Balances

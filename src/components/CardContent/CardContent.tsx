@@ -1,15 +1,28 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const CardContent: React.FC = ({ children }) => (
-  <StyledCardContent>{children}</StyledCardContent>
+interface CardContentProps {
+  divPadding?: 'sm' | 'lg'
+  customPadding?: number
+}
+
+const CardContent: React.FC<CardContentProps> = ({ divPadding, customPadding, children }) => (
+  <StyledCardContent divPadding={((!divPadding || divPadding === 'lg') ? 3 : 2)} customPadding={customPadding}>{children}</StyledCardContent>
 )
 
-const StyledCardContent = styled.div`
+
+interface StyledCardContentProps {
+  divPadding?: number;
+  customPadding?: number;
+}
+
+
+const StyledCardContent = styled.div<StyledCardContentProps>`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: ${(props) => props.theme.spacing[3]}px;
+  padding: ${(props) => props.theme.spacing[props.divPadding]}px;
+  padding: ${(props) => props.customPadding}px;
 `
 
 export default CardContent

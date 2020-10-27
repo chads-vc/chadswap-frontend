@@ -17,6 +17,7 @@ import useFarms from '../../../hooks/useFarms'
 import useSushi from '../../../hooks/useSushi'
 import { getEarned, getMasterChefContract } from '../../../sushi/utils'
 import { bnToDec } from '../../../utils'
+import InfoBar from './InfoBar'
 
 interface FarmWithStakedValue extends Farm, StakedValue {
   apy: BigNumber
@@ -66,7 +67,7 @@ const FarmCards: React.FC = () => {
   return (
     <StyledCards>
       <StyledRow>
-
+        <InfoBar />
       </StyledRow>
       {!!rows[0].length ? (
         rows.map((farmRow, i) => (
@@ -228,7 +229,6 @@ const StyledCardAccent = styled.div`
 
 const StyledCards = styled.div`
   width: 900px;
-  margin-top:200px;
   @media (max-width: 768px) {
     width: 100%;
   }
