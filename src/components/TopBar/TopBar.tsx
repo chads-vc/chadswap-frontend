@@ -6,6 +6,7 @@ import Logo from '../Logo'
 
 import AccountButton from './components/AccountButton'
 import HomeButton from './components/HomeButton'
+import Button from '../Button'
 
 interface TopBarProps {
   onPresentMobileMenu: () => void
@@ -20,6 +21,9 @@ const TopBar: React.FC<TopBarProps> = ({ onPresentMobileMenu }) => {
             <Logo />
           </StyledLogoWrapper>
           <StyledAccountButtonWrapper>
+            <div>
+              <Button to="/claim" size="md" text="claim lp"/>
+            </div>
             <HomeButton />
             <AccountButton />
           </StyledAccountButtonWrapper>

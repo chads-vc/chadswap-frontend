@@ -8,9 +8,11 @@ interface CountdownValueProps {
   timestamp: number | string
   fontSize?: number
   horizontal?: boolean
+  color?: string
+  lineHeight?: number
 }
 
-const CountdownValue:React.FC<CountdownValueProps> = ({ timestamp, fontSize, horizontal }) => {
+const CountdownValue:React.FC<CountdownValueProps> = ({ timestamp, fontSize, horizontal, color, lineHeight }) => {
   
   const renderer = (countdownProps: CountdownRenderProps) => {
     const { hours, minutes, seconds } = countdownProps
@@ -27,7 +29,7 @@ const CountdownValue:React.FC<CountdownValueProps> = ({ timestamp, fontSize, hor
 
 
   return (
-    <StyledValue fontSize={fontSize} horizontal={horizontal}>
+    <StyledValue lineHeight={lineHeight} color={color} fontSize={fontSize} horizontal={horizontal}>
     {typeof timestamp == 'string' ? (
         timestamp
     ) : (
@@ -43,6 +45,8 @@ const CountdownValue:React.FC<CountdownValueProps> = ({ timestamp, fontSize, hor
 interface StyledValueProps {
   fontSize?: number
   horizontal?: boolean
+  color?: string
+  lineHeight?: number
 
 }
 
@@ -55,6 +59,9 @@ const StyledValue = styled.div<StyledValueProps>`
     width: 50%;
     text-align:right;`
   }
+
+  color: ${(props) => props.color};
+  line-height: ${(props) => props.lineHeight}px;
 
 `
 

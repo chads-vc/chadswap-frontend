@@ -16,6 +16,7 @@ import Farms from './views/Farms'
 import Home from './views/Home'
 import Stake from './views/Stake'
 import SiteBackground from './components/SiteBackground'
+import PopCherry from './views/PopCherry'
 
 const App: React.FC = () => {
   const [mobileMenu, setMobileMenu] = useState(false)
@@ -44,6 +45,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/staking">
             <Stake />
+          </Route>
+          <Route path="/popcherry">
+            <PopCherry/>
           </Route>
         </Switch>
       </StyledAppWrapper>
