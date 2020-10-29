@@ -32,7 +32,7 @@ const BuyCard: React.FC = () => {
         <Label text="CHADS balance:" horizontal={true} />
         <Value value={!!account ? getBalanceNumber(chadsBalance) : 'Locked'} fontSize={25} />
         <StyledButton>
-          <Button variant="secondary" customColor="white" buttonWidth={80} text="buy" size="pc" href=""/>
+          <Button variant="secondary" customColor="white" buttonWidth={80} text="buy" size="pc" href="https://app.uniswap.org/#/swap?outputCurrency=0x69692d3345010a207b759a7d1af6fc7f38b35c5e"/>
         </StyledButton>
       </StyledRow>
       <div style={{"width":5, "height":5}}/>
@@ -40,7 +40,7 @@ const BuyCard: React.FC = () => {
         <Label text="EMTRG balance:" horizontal={true} />
         <Value value={!!account ? getBalanceNumber(emtrgBalance) : 'Locked'} fontSize={25} />
         <StyledButton>
-          <Button variant="secondary" customColor="white" buttonWidth={80} text="buy" size="pc" href=""/>
+          <Button variant="secondary" customColor="white" buttonWidth={80} text="buy" size="pc" href="https://app.uniswap.org/#/swap?outputCurrency=0xBd2949F67DcdC549c6Ebe98696449Fa79D988A9F"/>
         </StyledButton>
       </StyledRow>
     </StyledWrapper>

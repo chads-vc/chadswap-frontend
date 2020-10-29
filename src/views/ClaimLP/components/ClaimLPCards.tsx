@@ -1,35 +1,64 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Value from '../../../components/Value/'
+import Button from '../../../components/Button'
 import Container from '../../../components/Container'
 import Card from '../../../components/Card'
+
+
 import CardContent from '../../../components/CardContent'
-
-import Value from '../../../components/Value/'
-import Label from '../../../components/Label'
-
-
 import styled from 'styled-components'
+
+import { useWallet } from 'use-wallet'
+import { getBalanceNumber } from '../../../utils/formatBalance'
+import useEthContributed from '../../../hooks/useEthContributed'
+
+import useClaimLPTokens from '../../../hooks/useClaimLPTokens'
 
 import cardBgFlipped from '../../../assets/img/small-rectangle-pink-blue-flip.png'
 
+import useSushi from '../../../hooks/useSushi'
+import {getSushiContract} from '../../../sushi/utils'
+
 const ClaimLPCards: React.FC = () => {
-  return (
+
+    const [pendingTx, setPendingTx] = useState(false)
+  
+    const { account, ethereum }: { account: any; ethereum: any } = useWallet()
+    const ethContributed = useEthContributed()
+
+    const sushi = useSushi()
+    const {onClaimLPTokens} = useClaimLPTokens(getSushiContract(sushi))
+
+    return (
       <Container size="lg">
         <StyledWrapper>
        <StyledCardWrapper width={446} height={148}>
-       <StyledCard>
-         <CardContent divPadding="lg">
-           <Label text="ETH contributed"/> 
-        </CardContent>
-       </StyledCard>
-      </StyledCardWrapper>
+          <StyledTextWrapper>
+             <StyledText color="#8015e8" fontSize={50} lineHeight={45}>
+              You have contributed
+            </StyledText>
+            <Value fontSize={80} color="#31ED02" value={!!account ? getBalanceNumber(ethContributed) : 'Locked'}/> 
+            <StyledText color="#8015e8" fontSize={80} lineHeight={75}>
+              ETH
+            </StyledText>
  
-        <StyledCardWrapper width={430} height={244}>
-         <Card flipped={true}>
-           <CardContent divPadding="sm">
+            <StyledText color="#8015e8" fontSize={50} lineHeight={45}>
+              to the <span style={{color: '#E08DE3'}}>stacy</span> lge
+            </StyledText>
+            <StyledButton>
+              <Button size="lg" text="claim lp tokens"
+                disabled={!ethContributed.toNumber() || pendingTx}
+                onClick={async () => {
+                  setPendingTx(true)
+                  await onClaimLPTokens()
+                  setPendingTx(false)
+                }}
+              />
+            </StyledButton>
+            
+          </StyledTextWrapper>
 
-          </CardContent>
-         </Card>
-       </StyledCardWrapper>
+      </StyledCardWrapper>
 
      </StyledWrapper>
       </Container>
@@ -46,6 +75,11 @@ interface StyledTextProps {
   fontSize: number
   lineHeight: number
 }
+
+const StyledButton = styled.div`
+  flex: 1;
+  margin-top:30px;
+`
 
 const StyledText = styled.div<StyledTextProps>`
   font-family: 'Third-rail'; 

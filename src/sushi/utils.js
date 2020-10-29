@@ -187,7 +187,7 @@ export const getLastPopTime = async (sushiContract) => {
 }
 
 export const getEthContributed = async (sushiContract, account) => {
-  return sushiContract.methods.getEthContributed(account).call()
+  return sushiContract.methods.ethContributed(account).call()
 
 }
 
