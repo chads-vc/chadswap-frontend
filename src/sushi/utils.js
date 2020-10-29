@@ -19,6 +19,12 @@ export const getMasterChefAddress = (sushi) => {
 export const getSushiAddress = (sushi) => {
   return sushi && sushi.sushiAddress
 }
+export const getChadsAddress = (sushi) => {
+  return sushi && sushi.chadsAddress
+}
+export const getEmtrgAddress = (sushi) => {
+  return sushi && sushi.emtrgAddress
+}
 export const getWethContract = (sushi) => {
   return sushi && sushi.contracts && sushi.contracts.weth
 }
@@ -172,20 +178,39 @@ export const getStaked = async (masterChefContract, pid, account) => {
   }
 }
 
-export const getNextPopCherryTimestamp = async (sushiContract, account) => {
-  return 10000
+export const getCherryPopAmount = async (sushiContract) => {
+  return sushiContract.methods.getCherryPopAmount().call()
+}
+
+export const getLastPopTime = async (sushiContract) => {
+  return Math.max(1603954024, sushiContract.methods.lastPopTime().call().toNumber())
+}
+
+export const getEthContributed = async (sushiContract, account) => {
+  return sushiContract.methods.getEthContributed(account).call()
 
 }
 
 
-export const popCherry = async (sushiContract, account) => {
-  return sushiContract.methods.approve(account.address, ethers.constants.MaxUint256)
+
+export const cherryPop = async (sushiContract, account) => {
+  return sushiContract.methods.cherryPop()
     .send({ from: account })
     .on('transactionHash', (tx) => {
       console.log(tx)
       return tx.transactionHash
     })
 }
+
+export const claimLPTokens = async (sushiContract, account) => {
+  return sushiContract.methods.claimLPTokens()
+    .send({ from: account })
+    .on('transactionHash', (tx) => {
+      console.log(tx)
+      return tx.transactionHash
+    })
+}
+
 
 export const redeem = async (masterChefContract, account) => {
   let now = new Date().getTime() / 1000

@@ -8,9 +8,11 @@ interface ValueProps {
   decimals?: number
   fontSize?: number
   horizontal?: boolean
+  color?: string
+  lineHeight?: number
 }
 
-const Value: React.FC<ValueProps> = ({ value, decimals, fontSize, horizontal }) => {
+const Value: React.FC<ValueProps> = ({ value, decimals, fontSize, horizontal, color, lineHeight }) => {
   const [start, updateStart] = useState(0)
   const [end, updateEnd] = useState(0)
 
@@ -26,7 +28,7 @@ const Value: React.FC<ValueProps> = ({ value, decimals, fontSize, horizontal }) 
   }
   console.log(start, end)
   return (
-    <StyledValue fontSize={fontSize} horizontal={horizontal}>
+    <StyledValue fontSize={fontSize} horizontal={horizontal} color={color} lineHeight={lineHeight}>
       {typeof value == 'string' ? (
         value
       ) : (
@@ -47,7 +49,8 @@ const Value: React.FC<ValueProps> = ({ value, decimals, fontSize, horizontal }) 
 interface StyledValueProps {
   fontSize?: number
   horizontal?: boolean
-
+  color?: string
+  lineHeight?: number
 }
 
 const StyledValue = styled.div<StyledValueProps>`
@@ -59,6 +62,9 @@ const StyledValue = styled.div<StyledValueProps>`
     width: 50%;
     text-align:right;`
   }
+
+  color: ${(props) => props.color};
+  line-height: ${(props) => props.lineHeight}px;
 
 `
 

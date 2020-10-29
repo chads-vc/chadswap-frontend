@@ -36,13 +36,13 @@ export const addressMap = {
   MKR: '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2',
   SNX: '0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F',
   COMP: '0xc00e94Cb662C3520282E6f5717214004A7f26888',
-  LEND: '0x80fB784B7eD66730e8b1DBd9820aFD29931aab03',
-  SUSHIYCRV: '0x2C7a51A357d5739C5C74Bf3C96816849d2c9F726',
+  CHADS: '0x80fB784B7eD66730e8b1DBd9820aFD29931aab03',
+  STACY: '0xf12EC0D3Dab64DdEfBdC96474bDe25af3FE1B327',
 }
 
 export const contractAddresses = {
   sushi: {
-    1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+    1: '0xf12EC0D3Dab64DdEfBdC96474bDe25af3FE1B327',
   },
   masterChef: {
     1: '0xc2edad668740f1aa35e4d8f227fb8e17dca888cd',
@@ -50,6 +50,12 @@ export const contractAddresses = {
   weth: {
     1: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
   },
+  chads: {
+    1: '0x69692D3345010a207b759a7D1af6fc7F38b35c5E',
+  },
+  emtrg: {
+    1: '0xBd2949F67DcdC549c6Ebe98696449Fa79D988A9F',
+  }
 }
 
 
@@ -60,7 +66,7 @@ export const supportedPools = [
       1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
     },
     tokenAddresses: {
-      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+      1: '0xf12EC0D3Dab64DdEfBdC96474bDe25af3FE1B327'
     },
     symbol: 'STACY-ETH UNI-V2 LP',
     tokenSymbol: 'STACY',
@@ -69,10 +75,10 @@ export const supportedPools = [
   {
     pid: 1,
     lpAddresses: {
-      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+      1: '0xec81c9eb83e464499b09b38510f967d97363745b'
     },
     tokenAddresses: {
-      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+      1: '0x69692D3345010a207b759a7D1af6fc7F38b35c5E',
     },
     symbol: 'CHADS-ETH UNI-V2 LP',
     tokenSymbol: 'CHADS',
@@ -81,10 +87,10 @@ export const supportedPools = [
   {
     pid: 2,
     lpAddresses: {
-      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+      1: '0x837f68d11cd15e8ab10dd5f3f210516f2cf2bcfb',
     },
     tokenAddresses: {
-      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+      1: '0xBd2949F67DcdC549c6Ebe98696449Fa79D988A9F',
     },
     symbol: 'EMTRG-ETH UNI-V2 LP',
     tokenSymbol: 'EMTRG',
