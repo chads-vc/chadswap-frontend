@@ -148,13 +148,13 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
             </Button>
             <StyledInsight>
               <span>
-                APY {farm.apy
+                APY {(farm.apy && !farm.apy.isNaN())
                   ? `${farm.apy
                       .times(new BigNumber(100))
                       .toNumber()
                       .toLocaleString('en-US')
                       .slice(0, -1)}%`
-                  : 'Loading ...'}
+                  : 'TBD...'}
               </span>
               {/* <span>
                 {farm.tokenAmount

@@ -89,7 +89,7 @@ const Balances: React.FC = () => {
                 <Label text="stacy marketcap:" horizontal={true} />
                 <Value
                   money={true}
-                  value={!!stacyMarketCap ? stacyMarketCap : 'Locked'}
+                  value={!!stacyMarketCap ? stacyMarketCap : 'TBD'}
                   horizontal={true}
                   fontSize={23}
                 />

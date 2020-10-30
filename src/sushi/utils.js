@@ -76,7 +76,7 @@ export const getPoolWeight = async (masterChefContract, pid) => {
 }
 
 export const getEarned = async (masterChefContract, pid, account) => {
-  return masterChefContract.methods.pendingSushi(pid, account).call()
+  return masterChefContract.methods.pendingStacy(pid, account).call()
 }
 
 export const getTotalLPWethValue = async (
@@ -217,16 +217,20 @@ export const fetchCoingeckoData = async () => {
  
   window.fetch = fetch
 
-  const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=sushi&vs_currencies=usd&include_market_cap=true")
+  const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=stacy&vs_currencies=usd&include_market_cap=true")
   const e = await response.json()
   console.log("fetchcoingecko e", e)
   const response_eth = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd")
   const f = await response_eth.json()
   console.log("fetchcoingecko f", f)
   window.e = e
+  
+  try {
+    return [e["stacy"]["usd"], e["stacy"]["usd_market_cap"], f["ethereum"]["usd"]]
+  } catch (TypeError) {
+    return [0, 0, 0]
 
-  return [e["sushi"]["usd"], e["sushi"]["usd_market_cap"], f["ethereum"]["usd"]]
-
+  } 
 }
 
 

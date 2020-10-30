@@ -51,12 +51,12 @@ const Harvest: React.FC<HarvestProps> = ({ fpid }) => {
             <Label fontSize={38} text="stacy earned" />
           </StyledCardHeader>
           <StyledCardHeader2>
-            <Label fontSize={23} text={`APY ${apy ? `${apy
+            <Label fontSize={23} text={`APY ${(apy && !apy.isNaN()) ? `${apy
                       .times(new BigNumber(100))
                       .toNumber()
                       .toLocaleString('en-US')
                       .slice(0, -1)}%`
-                  : 'Loading ...' }`}
+                  : 'TBD...' }`}
              />
           </StyledCardHeader2>
           <StyledCardActions>
