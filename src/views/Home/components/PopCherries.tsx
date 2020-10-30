@@ -7,7 +7,6 @@ import Card from '../../../components/Card'
 import CardContent from '../../../components/CardContent'
 import Label from '../../../components/Label'
 import Spacer from '../../../components/Spacer'
-import Value from '../../../components/Value'
 import useAllEarnings from '../../../hooks/useAllEarnings'
 import useFarms from '../../../hooks/useFarms'
 import useTokenBalance from '../../../hooks/useTokenBalance'
@@ -16,16 +15,18 @@ import { getSushiAddress, getSushiSupply } from '../../../sushi/utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
 import { Link } from 'react-router-dom';
 
+import  usePopCherryAmount from '../../../hooks/usePopCherryAmount'
 
 import cherry from '../../../assets/img/cherry.gif'
-import CountdownValue from '../../../components/CountdownValue'
-
+import Value from '../../../components/Value'
 
 const PopCherries: React.FC = () => {
   const [totalSupply, setTotalSupply] = useState<BigNumber>()
   const sushi = useSushi()
   const sushiBalance = useTokenBalance(getSushiAddress(sushi))
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
+
+  const popCherryAmount = usePopCherryAmount()
 
   useEffect(() => {
     async function fetchTotalSupply() {
@@ -41,8 +42,11 @@ const PopCherries: React.FC = () => {
       <Link style={{textDecoration: "none", width:"100%", height:"100%"}} to="/popcherry">
         <StyledWrapper>
           <StyledContent><Label text="pop cherry" fontSize={33}/></StyledContent>
-          <StyledContent style={{paddingTop:20}}><CountdownValue timestamp={!!account ? 1603788381 : 'TBD'} fontSize={33} /></StyledContent>
-          <StyledContent style={{paddingTop:24}}><Label text="until next cherry pop" fontSize={22}/></StyledContent>
+          <StyledContent style={{paddingTop:20}}>
+            <Value fontSize={33} color="#31ED02" value={!!account ? getBalanceNumber(popCherryAmount) : 'Locked'} />
+ 
+            </StyledContent>
+          <StyledContent style={{paddingTop:24}}><Label text="stacy for cherry pop" fontSize={22}/></StyledContent>
         </StyledWrapper>
       </Link>
       
