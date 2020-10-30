@@ -212,6 +212,25 @@ export const claimLPTokens = async (sushiContract, account) => {
 }
 
 
+export const fetchCoingeckoData = async () => {
+
+ 
+  window.fetch = fetch
+
+  const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=sushi&vs_currencies=usd&include_market_cap=true")
+  const e = await response.json()
+  console.log("fetchcoingecko e", e)
+  const response_eth = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd")
+  const f = await response_eth.json()
+  console.log("fetchcoingecko f", f)
+  window.e = e
+
+  return [e["sushi"]["usd"], e["sushi"]["usd_market_cap"], f["ethereum"]["usd"]]
+
+}
+
+
+
 export const redeem = async (masterChefContract, account) => {
   let now = new Date().getTime() / 1000
   if (now >= 1597172400) {

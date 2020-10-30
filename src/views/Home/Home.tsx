@@ -8,28 +8,27 @@ import PageHeader from '../../components/PageHeader'
 import Spacer from '../../components/Spacer'
 import Balances from './components/Balances'
 
+import swap from '../../assets/img/swap.png'
+
 const Home: React.FC = () => {
   return (
     <Page>
       <Container>
-        <Balances />
+        <StyledDiv/>
       </Container>
-      <Spacer size="lg" />
-      <StyledInfo>
-        🏆<b>Pro Tip</b>: SUSHI-ETH UNI-V2 LP token pool yields TWICE more token
-        rewards per block.
-      </StyledInfo>
-      <Spacer size="lg" />
-      <div
-        style={{
-          margin: '0 auto',
-        }}
-      >
-        <Button text="🔪 See the Menu" to="/farms" variant="secondary" />
-      </div>
-    </Page>
+   </Page>
   )
 }
+
+const StyledDiv = styled.div`
+  margin:auto;
+  width:500px;
+  height:300px;
+  background-image: url(${swap});
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+`
 
 const StyledInfo = styled.h3`
   color: ${(props) => props.theme.color.grey[500]};

@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
 interface SiteBackgroundProps {
   backgroundIndex?: number
 }
@@ -16,9 +18,19 @@ const SiteBackground: React.FC<SiteBackgroundProps> = ({
   ]
 
   return (
-    <StyledDiv>
-      <video role="presentation" preload="auto" crossOrigin="anonymous" loop muted playsInline autoPlay src={backgroundURLs[backgroundIndex]}/>
-    </StyledDiv>    
+    <Switch>
+      <Route path="/" exact>
+        
+        <StyledDiv>
+          <video role="presentation" preload="auto" crossOrigin="anonymous" loop muted playsInline autoPlay src={backgroundURLs[0]}/>
+        </StyledDiv> 
+        </Route>
+        <Route>
+        <StyledDiv>
+          <video role="presentation" preload="auto" crossOrigin="anonymous" loop muted playsInline autoPlay src={backgroundURLs[1]}/>
+        </StyledDiv> 
+        </Route> 
+      </Switch>
   )
 }
 

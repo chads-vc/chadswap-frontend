@@ -14,6 +14,7 @@ import PoolStats from '../../Home/components/PoolStats'
 import PopCherries from '../../Home/components/PopCherries'
 
 const InfoBar: React.FC = () => {
+
    return (
      <>  
       <StyledCardWrapper>

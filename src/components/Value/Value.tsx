@@ -10,9 +10,10 @@ interface ValueProps {
   horizontal?: boolean
   color?: string
   lineHeight?: number
+  money?: boolean
 }
 
-const Value: React.FC<ValueProps> = ({ value, decimals, fontSize, horizontal, color, lineHeight }) => {
+const Value: React.FC<ValueProps> = ({ value, decimals, fontSize, horizontal, color, lineHeight, money }) => {
   const [start, updateStart] = useState(0)
   const [end, updateEnd] = useState(0)
 
@@ -31,10 +32,11 @@ const Value: React.FC<ValueProps> = ({ value, decimals, fontSize, horizontal, co
     <StyledValue fontSize={fontSize} horizontal={horizontal} color={color} lineHeight={lineHeight}>
       {typeof value == 'string' ? (
         value
-      ) : (
+      ) :  (
         <CountUp
           start={start}
           end={end}
+          prefix={money ? "$" : ""}
           decimals={
             decimals !== undefined ? decimals : end < 0 ? 4 : end > 1e5 ? 0 : 3
           }
