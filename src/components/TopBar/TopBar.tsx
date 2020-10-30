@@ -24,7 +24,7 @@ const TopBar: React.FC<TopBarProps> = ({ onPresentMobileMenu }) => {
             <div>
               <Button to="/claimlp" size="md" text="claim lp"/>
             </div>
-            <HomeButton />
+    {/*<HomeButton />*/}
             <AccountButton />
           </StyledAccountButtonWrapper>
         </StyledTopBarInner>

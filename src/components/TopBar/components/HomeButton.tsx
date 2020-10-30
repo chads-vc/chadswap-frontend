@@ -8,7 +8,7 @@ const HomeButton: React.FC<HomeButtonProps> = (props) => {
 
   return (
     <StyledHomeButton>
-      <Button to="/farms" size="md" text="farms" />
+      <Button to="/farms" disabled={true} size="md" text="farms" />
     </StyledHomeButton>
   )
 }
