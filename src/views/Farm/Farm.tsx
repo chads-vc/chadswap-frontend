@@ -62,7 +62,7 @@ const Farm: React.FC = () => {
         title={tokenSymbol}
         tokenAddress={tokenAddress}
       />
-      <StyledFarm>
+     <StyledFarm>
         <StyledCardsWrapper>
           <StyledCardWrapper>
             <Harvest fpid={pid} />

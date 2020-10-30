@@ -99,15 +99,16 @@ export const supportedPools = [
   {
     pid: 3,
     lpAddresses: {
-      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+      1: '0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc',
     },
     tokenAddresses: {
-      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+      1: '0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48',
     },
     symbol: 'USDC-ETH UNI-V2 LP',
     tokenSymbol: 'USDC',
     icon: "",
   },
+  /*
   {
     pid: 4,
     lpAddresses: {
@@ -120,13 +121,14 @@ export const supportedPools = [
     tokenSymbol: 'USDT',
     icon: "",
   },
+  */
   {
-    pid: 5,
+    pid: 4,
     lpAddresses: {
-      1: '0xce84867c3c02b05dc570d0135103d3fb9cc19433',
+      1: '0xBb2b8038a1640196FbE3e38816F3e67Cba72D940',
     },
     tokenAddresses: {
-      1: '0x6b3595068778dd592e39a122f4f5a5cf09c90fe2',
+      1: '0x2260fac5e5542a773aa44fbcfedf7c193bc2c599',
     },
     symbol: 'WBTC-ETH UNI-V2 LP',
     tokenSymbol: 'WBTC',

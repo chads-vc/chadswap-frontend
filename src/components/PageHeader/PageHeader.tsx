@@ -40,7 +40,13 @@ const PageHeader: React.FC<PageHeaderProps> = ({ tokenSymbol, title, tokenAddres
         <StyledButton>
           <Button href={`https://app.uniswap.org/#/add/${tokenAddress}/ETH`} size="lg" text="add liquidity"/>
         </StyledButton>
-      </StyledPageHeader>
+          { tokenSymbol === 'STACY' && 
+            <StyledText fontSize={25} lineHeight={25} color="#8015E8">
+              all liquidity added to this pool is locked forever
+            </StyledText>
+          }
+ 
+     </StyledPageHeader>
     </Container>
   )
 }
@@ -81,6 +87,25 @@ const StyledTitle = styled.span`
   }
   margin-top:-90px;
   text-shadow: #c8c8c8 1px 1px 0px, #b4b4b4 0px 2px 0px, #a0a0a0 0px 3px 0px, rgba(140, 140, 140, 0.498039) 0px 4px 0px, #787878 0px 0px 0px, rgba(0, 0, 0, 0.498039) 0px 5px 10px;
+`
+
+interface StyledTextProps {
+  color: string
+  fontSize: number
+  lineHeight: number
+}
+
+
+
+const StyledText = styled.div<StyledTextProps>`
+  font-family: 'Third-rail'; 
+  color: ${(props) => props.color};
+  flex:1;
+  margin-top:10px;
+  font-size: ${(props) => props.fontSize}px;
+  line-height: ${(props) => props.lineHeight}px;
+  text-shadow: #c8c8c8 1px 1px 0px, #b4b4b4 0px 2px 0px, #a0a0a0 0px 3px 0px, rgba(140, 140, 140, 0.498039) 0px 4px 0px, #787878 0px 0px 0px, rgba(0, 0, 0, 0.498039) 0px 5px 10px;
+}
 `
 
 const StyledSubtitle = styled.h3`
