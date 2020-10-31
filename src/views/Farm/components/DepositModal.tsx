@@ -19,7 +19,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
   onDismiss,
   tokenName = '',
 }) => {
-  const [val, setVal] = useState('')
+  const [val, setVal] = useState('0')
   const [pendingTx, setPendingTx] = useState(false)
 
   const fullBalance = useMemo(() => {
@@ -39,7 +39,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
 
   return (
     <Modal>
-      <ModalTitle text={`Deposit ${tokenName} Tokens`} />
+      <ModalTitle text={`Deposit ${tokenName}`} />
       <TokenInput
         value={val}
         onSelectMax={handleSelectMax}
@@ -48,7 +48,7 @@ const DepositModal: React.FC<DepositModalProps> = ({
         symbol={tokenName}
       />
       <ModalActions>
-        <Button text="Cancel" variant="secondary" onClick={onDismiss} />
+        <Button text="cancel" customColor="white" variant="secondary" onClick={onDismiss} />
         <Button
           disabled={pendingTx}
           text={pendingTx ? 'Pending Confirmation' : 'Confirm'}

@@ -19,7 +19,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
   max,
   tokenName = '',
 }) => {
-  const [val, setVal] = useState('')
+  const [val, setVal] = useState('0')
   const [pendingTx, setPendingTx] = useState(false)
 
   const fullBalance = useMemo(() => {
@@ -48,7 +48,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({
         symbol={tokenName}
       />
       <ModalActions>
-        <Button text="Cancel" variant="secondary" onClick={onDismiss} />
+        <Button text="cancel" customColor="white" variant="secondary" onClick={onDismiss} />
         <Button
           disabled={pendingTx}
           text={pendingTx ? 'Pending Confirmation' : 'Confirm'}
