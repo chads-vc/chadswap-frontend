@@ -12,11 +12,11 @@ import useAllEarnings from '../../../hooks/useAllEarnings'
 import useFarms from '../../../hooks/useFarms'
 import useTokenBalance from '../../../hooks/useTokenBalance'
 import useSushi from '../../../hooks/useSushi'
-import { getSushiAddress, getSushiSupply, getSushiContract } from '../../../sushi/utils'
+import { getChadsAddress, getEmtrgAddress, getSushiAddress, getSushiSupply, getSushiContract } from '../../../sushi/utils'
 
 import cherry from '../../../assets/img/cherry.gif'
 import useCherryPop from '../../../hooks/useCherryPop'
-
+import {getBalanceNumber} from '../../../utils/formatBalance'
 
 const PopCherryCard: React.FC = () => {
   const sushi = useSushi()
@@ -26,6 +26,11 @@ const PopCherryCard: React.FC = () => {
 
   const [pendingTx, setPendingTx] = useState(false)
 
+  const chadsBalance = useTokenBalance(getChadsAddress(sushi))
+  const emtrgBalance = useTokenBalance(getEmtrgAddress(sushi))
+
+  const disabled = (!chadsBalance || getBalanceNumber(chadsBalance) < 10000) && (!emtrgBalance || getBalanceNumber(emtrgBalance) < 1000) 
+
   const onClick = async () => {
     setPendingTx(true)
     await onCherryPop()
@@ -33,17 +38,34 @@ const PopCherryCard: React.FC = () => {
   }
 
   return (
-    <a href='#' style={{textDecoration: "none", width:"100%", height:"100%"}} onClick={onClick}>  
+    <StyledLink href='#' onClick={onClick} disabled={disabled}>
         <StyledWrapper>
           <StyledBalance>
             <StyledText>Pop Cherry</StyledText>
           </StyledBalance>
         </StyledWrapper>
-      </a>
+    </StyledLink>
       
   )
 }
 
+interface StyledLinkProps {
+  disabled: boolean
+}
+
+
+const StyledLink = styled.a<StyledLinkProps>`
+  text-decoration: none;
+  width: 100%;
+  height: 100%;
+
+  ${(props) => props.disabled &&
+    `pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;`
+  }
+
+`
 
 const StyledText = styled.span`
   text-shadow: #c8c8c8 1px 1px 0px, #b4b4b4 0px 2px 0px, #a0a0a0 0px 3px 0px, rgba(140, 140, 140, 0.498039) 0px 4px 0px, #787878 0px 0px 0px, rgba(0, 0, 0, 0.498039) 0px 5px 10px;

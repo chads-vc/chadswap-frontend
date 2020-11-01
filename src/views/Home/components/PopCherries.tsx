@@ -26,7 +26,7 @@ const PopCherries: React.FC = () => {
   const sushiBalance = useTokenBalance(getSushiAddress(sushi))
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
 
-  const popCherryAmount = usePopCherryAmount()
+  const {popCherryAmount, popCherryBurnRewardPct} = usePopCherryAmount()
 
   useEffect(() => {
     async function fetchTotalSupply() {
@@ -43,10 +43,10 @@ const PopCherries: React.FC = () => {
         <StyledWrapper>
           <StyledContent><Label text="pop cherry" fontSize={33}/></StyledContent>
           <StyledContent style={{paddingTop:20}}>
-            <Value fontSize={33} color="#31ED02" value={!!account ? getBalanceNumber(popCherryAmount) : 'Locked'} />
+            <Value fontSize={33} color="#31ED02" decimals={0} value={!!account ? getBalanceNumber(popCherryAmount) : 'Locked'} />
  
             </StyledContent>
-          <StyledContent style={{paddingTop:24}}><Label text="stacy for cherry pop" fontSize={22}/></StyledContent>
+          <StyledContent style={{paddingTop:24}}><Label text="stacys waiting for pop" fontSize={20}/></StyledContent>
         </StyledWrapper>
       </Link>
       

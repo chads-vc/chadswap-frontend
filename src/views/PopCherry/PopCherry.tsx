@@ -18,7 +18,7 @@ import heart from '../../assets/img/hearts.gif'
 const PopCherry: React.FC = () => {
 
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
-  const popCherryAmount = usePopCherryAmount()
+  const {popCherryAmount, popCherryBurnRewardPct} = usePopCherryAmount()
   console.log('rendering Pop Cherry', typeof(popCherryAmount))
   return (
     <Page>
@@ -44,17 +44,23 @@ const PopCherry: React.FC = () => {
 
       <StyledCardWrapper width={446} height={170}>
         <StyledTextWrapper>
-          <Value fontSize={90} color="#31ED02" lineHeight={79} value={!!account ? getBalanceNumber(popCherryAmount) : 'Locked'} />
+
+        <StyledText color="#8015E8" fontSize={48} lineHeight={40}>
+          EARN
+         </StyledText>
+
+
+          <Value fontSize={90} color="#31ED02" lineHeight={69} decimals={0} value={!!account ? getBalanceNumber(popCherryAmount) * popCherryBurnRewardPct : 'Locked'} />
           {/*
          <StyledText color="#31ED02" fontSize={80} lineHeight={70}>
            TEST
          </StyledText>
           */}
         <StyledText color="#8015E8" fontSize={48} lineHeight={40}>
-          STACY REWARD FOR
+          STACY FOR
          </StyledText>
 
-         <StyledText color="#8015E8" fontSize={69} lineHeight={68}>
+         <StyledText color="#8015E8" fontSize={64} lineHeight={63}>
             POPPING HER <span style={{color: "#E08DE3"}}>CHERRY</span>
          </StyledText>
  
@@ -67,6 +73,34 @@ const PopCherry: React.FC = () => {
           <StyledImg/>  
         </StyledTextWrapper>
       </StyledCardWrapper>
+
+      <StyledCardWrapper width={446} height={170}>
+        <StyledTextWrapper>
+          <Value fontSize={90} color="#31ED02" lineHeight={79} decimals={0} value={!!account ? getBalanceNumber(popCherryAmount): 'Locked'} />
+          {/*
+         <StyledText color="#31ED02" fontSize={80} lineHeight={70}>
+           TEST
+         </StyledText>
+          */}
+        <StyledText color="#8015E8" fontSize={48} lineHeight={40}>
+          STACY WAITING TO GET
+         </StyledText>
+
+         <StyledText color="#8015E8" fontSize={64} lineHeight={63}>
+            THEIR <span style={{color: "#E08DE3"}}>CHERRIES</span> POPPED
+         </StyledText>
+ 
+        </StyledTextWrapper>
+      </StyledCardWrapper>
+
+      <div style={{"width":45,"height":45}}/>
+      <StyledCardWrapper width={446} height={100}>
+        <StyledTextWrapper>
+          <StyledImg/>  
+        </StyledTextWrapper>
+      </StyledCardWrapper>
+
+
 
       <StyledCardWrapper width={446} height={50}>
         <StyledTextWrapper>

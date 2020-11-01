@@ -82,6 +82,7 @@ const Balances: React.FC = () => {
                   value={!!stacyPrice ? stacyPrice: 'TBD'}
                   horizontal={true}
                   fontSize={23}
+                  decimals={4}
                 />
               </StyledLabelValueWrapper>
               <div style={{'width': 9, 'height': 9}}/>

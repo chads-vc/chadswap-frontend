@@ -182,6 +182,10 @@ export const getCherryPopAmount = async (sushiContract) => {
   return sushiContract.methods.getCherryPopAmount().call()
 }
 
+export const getCherryPopRewardPercent = async (sushiContract) => {
+  return sushiContract.methods.cherryPopBurnCallerRewardPct().call()
+}
+
 export const getLastPopTime = async (sushiContract) => {
   return Math.max(1603954024, sushiContract.methods.lastPopTime().call().toNumber())
 }
@@ -217,7 +221,7 @@ export const fetchCoingeckoData = async () => {
  
   window.fetch = fetch
 
-  const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=stacy&vs_currencies=usd&include_market_cap=true")
+  const response = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=stacy&vs_currencies=usd")
   const e = await response.json()
   console.log("fetchcoingecko e", e)
   const response_eth = await fetch("https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd")
@@ -226,7 +230,7 @@ export const fetchCoingeckoData = async () => {
   window.e = e
   
   try {
-    return [e["stacy"]["usd"], e["stacy"]["usd_market_cap"], f["ethereum"]["usd"]]
+    return [e["stacy"]["usd"], e["stacy"]["usd"] * 1000000000, f["ethereum"]["usd"]]
   } catch (TypeError) {
     return [0, 0, 0]
 
