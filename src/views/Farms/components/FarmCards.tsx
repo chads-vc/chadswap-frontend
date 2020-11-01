@@ -12,8 +12,9 @@ import Spacer from '../../../components/Spacer'
 import { Farm } from '../../../contexts/Farms'
 import useAllStakedValue from '../../../hooks/useAllStakedValue'
 import useFarms from '../../../hooks/useFarms'
+import useBlock from '../../../hooks/useBlock'
 import useSushi from '../../../hooks/useSushi'
-import { getEarned, getMasterChefContract } from '../../../sushi/utils'
+import { getEarned, getMasterChefContract, getRewardsInThisEpoch } from '../../../sushi/utils'
 import { bnToDec, calculateAPY, StakedValue } from '../../../utils'
 import InfoBar from './InfoBar'
 
@@ -27,20 +28,38 @@ const FarmCards: React.FC = () => {
   const stakedValue = useAllStakedValue()
 
   const sushiIndex = farms.findIndex(
-    ({ tokenSymbol }) => tokenSymbol === 'SUSHI',
+    ({ tokenSymbol }) => tokenSymbol === 'STACY',
   )
+
+  const sushi = useSushi()
+
+  const block = useBlock()
+
+  const [rewardsInThisEpoch, setRewardsInThisEpoch] = useState(new BigNumber(0))
+  useEffect(() => {
+    async function fetchRewardsInThisEpoch () {
+      const rewards = await getRewardsInThisEpoch(sushi)
+      setRewardsInThisEpoch(rewards)
+    }
+    if (sushi) {
+      fetchRewardsInThisEpoch()
+    }
+  }, [sushi, setRewardsInThisEpoch])
+  console.log('epocrewards', rewardsInThisEpoch.toString())
 
   const sushiPrice =
     sushiIndex >= 0 && stakedValue[sushiIndex]
       ? stakedValue[sushiIndex].tokenPriceInWeth
       : new BigNumber(0)
 
+  console.log('price', sushiPrice)
+
   const rows = farms.reduce<FarmWithStakedValue[][]>(
     (farmRows, farm, i) => {
       const farmWithStakedValue = {
         ...farm,
         ...stakedValue[i],
-        apy: calculateAPY(stakedValue[i], sushiPrice)
+        apy: calculateAPY(stakedValue[i], sushiPrice, block, rewardsInThisEpoch)
       }
       const newFarmRows = [...farmRows]
       if (newFarmRows[newFarmRows.length - 1].length === 3) {
@@ -57,7 +76,7 @@ const FarmCards: React.FC = () => {
     <StyledCards>
       <StyledRow>
         <InfoBar />
-      </StyledRow>
+     </StyledRow>
       {!!rows[0].length ? (
         rows.map((farmRow, i) => (
           <StyledRow key={i}>
@@ -147,13 +166,16 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm }) => {
               )}
             </Button>
             <StyledInsight>
+              <span>TVL {Math.round(!!farm && !!farm.totalWethValue && farm.totalWethValue.toNumber())}ETH</span>
+            </StyledInsight>
+            <StyledInsight>
               <span>
                 APY {(farm.apy && !farm.apy.isNaN())
-                  ? `${farm.apy
+                  ? `${Math.round(farm.apy
                       .times(new BigNumber(100))
-                      .toNumber()
+                      .toNumber())
                       .toLocaleString('en-US')
-                      .slice(0, -1)}%`
+                      }%`
                   : 'TBD...'}
               </span>
               {/* <span>
@@ -284,8 +306,8 @@ const StyledInsight = styled.div`
   justify-content: space-between;
   color: ${props => props.theme.color.purple};
   width: 100%;
-  margin-top: 40px;
-  line-height: 32px;
+  margin-top: 8px;
+  line-height: 30px;
   font-size: 30px;
   padding: 0 12px;
   text-align: center;

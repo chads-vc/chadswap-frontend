@@ -4,23 +4,28 @@ import styled from 'styled-components'
 const Nav: React.FC = () => {
   return (
     <StyledNav>
-      {/*<StyledLink
+
+      <StyledLink
         target="_blank"
-        href="https://etherscan.io/address/0xc2edad668740f1aa35e4d8f227fb8e17dca888cd#code"
+        href="https://etherscan.io/address/0x223Bc79156CBb0a6D175Ea6130Cb382D01868DF8#code"
       >
-        Staking Contract
-      </StyledLink>*/}
+        Staking
+      </StyledLink>
+      <StyledLink
+        target="_blank"
+        href="https://etherscan.io/address/0x222207e931d7bf38466c395da30e632872a98ae6#code"
+      >
+        Vesting
+      </StyledLink>
+
       <StyledLink
         target="_blank"
         href="https://uniswap.info/pair/0xdfcc12a0aad50d84639d558551edd7a523b69ac5"
       >
-        Uniswap STACY-ETH
+        Uniswap
       </StyledLink>
       <StyledLink target="_blank" href="https://discord.gg/NJAYnjC">
         Discord
-      </StyledLink>
-      <StyledLink target="_blank" href="https://github.com/chads-vc">
-        Github
       </StyledLink>
       <StyledLink target="_blank" href="https://twitter.com/chadsvc">
         Twitter

@@ -40,7 +40,7 @@ const Harvest: React.FC<HarvestProps> = ({ fpid }) => {
     ({ pid }) => pid === fpid, 
   )
 
-  let apy = calculateAPY(stakedValue[farmIndex], sushiPrice) 
+  //let apy = calculateAPY(stakedValue[farmIndex], sushiPrice) 
 
   return (
     <Card width={380} height={211} flipped={true}>
@@ -51,13 +51,15 @@ const Harvest: React.FC<HarvestProps> = ({ fpid }) => {
             <Label fontSize={38} text="stacy earned" />
           </StyledCardHeader>
           <StyledCardHeader2>
+            <Label fontSize={15} text="25% released now, 75% vested over 1 year"/>
+            {/*
             <Label fontSize={23} text={`APY ${(apy && !apy.isNaN()) ? `${apy
                       .times(new BigNumber(100))
                       .toNumber()
                       .toLocaleString('en-US')
                       .slice(0, -1)}%`
                   : 'TBD...' }`}
-             />
+             />*/}
           </StyledCardHeader2>
           <StyledCardActions>
             <Button

@@ -32,6 +32,10 @@ const Balances: React.FC = () => {
   const [liq, setLiq] = useState(0)
 
   const stakedValue = useAllStakedValue()
+
+  //@ts-ignore
+  window.stakedValue = stakedValue
+
   console.log('staked', stakedValue)
 
   const getCoingecko = useCallback(async() => {
@@ -39,18 +43,19 @@ const Balances: React.FC = () => {
     setStacyPrice(s)
     setStacyMarketCap(m)
     setEthPrice(e)
-
     const totaltvl = stakedValue.reduce((t, s, i) => {
       if (farms[i].tokenSymbol === 'STACY'){
-       setLiq(s.totalWethValue.div(new BigNumber(10).pow(18)).toNumber() * e)
+       setLiq(s.totalWethValue.toNumber() * e)
       }
  
-      return t + s.totalWethValue.div(new BigNumber(10).pow(18)).toNumber()
+      return t + s.totalWethValue.toNumber()
     }, 0)
     setTvl(totaltvl * e)
   }, [farms, stakedValue])
 
-  getCoingecko()
+  useEffect(() => {
+    getCoingecko()
+  }, [getCoingecko])
 
   useEffect(() => {
     async function fetchTotalSupply() {
@@ -72,6 +77,7 @@ const Balances: React.FC = () => {
                   value={!!tvl ? tvl : 'TBD' }
                   horizontal={true}
                   fontSize={23}
+                  money={true}
                 />
               </StyledLabelValueWrapper>
               <div style={{'width': 11, 'height': 11}}/>
@@ -102,6 +108,7 @@ const Balances: React.FC = () => {
                   value={!!liq ? liq : 'TBD'}
                   horizontal={true}
                   fontSize={23}
+                  money={true}
                 />
               </StyledLabelValueWrapper>
          </StyledBalance>
