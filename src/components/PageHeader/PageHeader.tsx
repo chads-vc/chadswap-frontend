@@ -65,7 +65,11 @@ const ButtonsWrapper = styled.div`
   width: 900px;
 `
 
-const StyledButton = styled.div``
+const StyledButton = styled.div`
+  button {
+    text-transform: none;
+  }
+`
 
 const StyledPageHeader = styled.div`
   align-items: center;
