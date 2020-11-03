@@ -37,15 +37,19 @@ const PageHeader: React.FC<PageHeaderProps> = ({ tokenSymbol, title, tokenAddres
       <StyledPageHeader>
         <StyledIcon backgroundUrl={lp_images[tokenSymbol]}/>
         <StyledTitle>{title}-ETH</StyledTitle>
-        <StyledButton>
-          <Button href={`https://app.uniswap.org/#/add/${tokenAddress}/ETH`} size="lg" text="add liquidity"/>
-        </StyledButton>
-          { tokenSymbol === 'STACY' && 
-            <StyledText fontSize={25} lineHeight={25} color="#8015E8">
-              all liquidity added to this pool is locked forever
-            </StyledText>
-          }
- 
+        <ButtonsWrapper>
+          <StyledButton>
+            <Button href={`https://app.uniswap.org/#/add/${tokenAddress}/ETH`} size="lg" text="add liquidity"/>
+          </StyledButton>
+          <StyledButton>
+            <Button size="lg" text="stake NFT"/>
+          </StyledButton>
+        </ButtonsWrapper>
+        { tokenSymbol === 'STACY' && 
+          <StyledText fontSize={25} lineHeight={25} color="#8015E8">
+            all liquidity added to this pool is locked forever
+          </StyledText>
+        } 
      </StyledPageHeader>
     </Container>
   )
@@ -54,6 +58,12 @@ const PageHeader: React.FC<PageHeaderProps> = ({ tokenSymbol, title, tokenAddres
 interface StyledIconProps {
   backgroundUrl: string
 }
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 900px;
+`
 
 const StyledButton = styled.div``
 
