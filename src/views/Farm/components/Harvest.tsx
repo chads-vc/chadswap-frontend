@@ -13,6 +13,7 @@ import { calculateAPY, StakedValue } from '../../../utils'
 import useAllStakedValue from '../../../hooks/useAllStakedValue'
 import useFarms from '../../../hooks/useFarms'
 import BigNumber from 'bignumber.js'
+import badge from '../../../assets/img/lsd-300.png'
 
 interface HarvestProps {
   fpid: number
@@ -46,6 +47,15 @@ const Harvest: React.FC<HarvestProps> = ({ fpid }) => {
     <Card width={380} height={211} flipped={true}>
       <CardContent>
         <StyledCardContentInner>
+          <StyledCardBadge>
+            <StyledCardBadgeInner>
+              <img src={badge} alt="badge" />
+              <Label fontSize={24} fontWeight={900} text="25%" />
+              <Label fontSize={13} fontWeight={600} text="yield bonus" />
+              <Label fontSize={24} fontWeight={900} text="3" />
+              <Label fontSize={13} fontWeight={600} text="NTFs staked" />
+            </StyledCardBadgeInner>
+          </StyledCardBadge>
           <StyledCardHeader>
             <Value fontSize={55} value={getBalanceNumber(earnings)} />
             <Label fontSize={38} text="stacy earned" />
@@ -81,6 +91,32 @@ const Harvest: React.FC<HarvestProps> = ({ fpid }) => {
     </Card>
   )
 }
+const StyledCardBadge = styled.div`
+  position: absolute;
+  top: -43px;
+  left: -40px;
+  transform: rotate(-25deg);
+  text-align: center;
+`
+
+const StyledCardBadgeInner = styled.div`
+  position: relative;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+  padding-top: 10px;
+  img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    z-index: -1;
+  }
+  div {
+    line-height: 90%;
+  }
+`
+
 
 const StyledCardHeader = styled.div`
   align-items: center;
@@ -116,6 +152,7 @@ const StyledSpacer = styled.div`
 `
 
 const StyledCardContentInner = styled.div`
+  position: relative;
   align-items: center;
   display: flex;
   flex: 1;
