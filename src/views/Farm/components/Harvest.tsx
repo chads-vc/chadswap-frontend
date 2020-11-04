@@ -16,10 +16,11 @@ import BigNumber from 'bignumber.js'
 import badge from '../../../assets/img/lsd-300.png'
 
 interface HarvestProps {
-  fpid: number
+  fpid: number,
+  tokenSymbol: string,
 }
 
-const Harvest: React.FC<HarvestProps> = ({ fpid }) => {
+const Harvest: React.FC<HarvestProps> = ({ fpid, tokenSymbol }) => {
   const earnings = useEarnings(fpid)
   const [pendingTx, setPendingTx] = useState(false)
   const { onReward } = useReward(fpid)
@@ -47,15 +48,17 @@ const Harvest: React.FC<HarvestProps> = ({ fpid }) => {
     <Card width={380} height={211} flipped={true}>
       <CardContent>
         <StyledCardContentInner>
-          <StyledCardBadge>
-            <StyledCardBadgeInner>
-              <img src={badge} alt="badge" />
-              <Label fontSize={24} fontWeight={900} text="25%" />
-              <Label fontSize={13} fontWeight={600} text="yield bonus" />
-              <Label fontSize={24} fontWeight={900} text="3" />
-              <Label fontSize={13} fontWeight={600} text="NTFs staked" />
-            </StyledCardBadgeInner>
-          </StyledCardBadge>
+          {tokenSymbol === 'CHADS' && (
+            <StyledCardBadge>
+              <StyledCardBadgeInner>
+                <img src={badge} alt="badge" />
+                <Label fontSize={24} fontWeight={900} text="25%" />
+                <Label fontSize={13} fontWeight={600} text="yield bonus" />
+                <Label fontSize={24} fontWeight={900} text="3" />
+                <Label fontSize={13} fontWeight={600} text="NTFs staked" />
+              </StyledCardBadgeInner>
+            </StyledCardBadge>
+          )}
           <StyledCardHeader>
             <Value fontSize={55} value={getBalanceNumber(earnings)} />
             <Label fontSize={38} text="stacy earned" />
