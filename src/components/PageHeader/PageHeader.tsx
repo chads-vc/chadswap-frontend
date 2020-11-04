@@ -41,9 +41,11 @@ const PageHeader: React.FC<PageHeaderProps> = ({ tokenSymbol, title, tokenAddres
           <StyledButton>
             <Button href={`https://app.uniswap.org/#/add/${tokenAddress}/ETH`} size="lg" text="add liquidity"/>
           </StyledButton>
-          <StyledButton>
-            <Button size="lg" text="stake NFT"/>
-          </StyledButton>
+          {tokenSymbol === 'CHADS' && (
+            <StyledButton>
+              <Button size="lg" text="stake NFT"/>
+            </StyledButton>
+          )}
         </ButtonsWrapper>
         { tokenSymbol === 'STACY' && 
           <StyledText fontSize={25} lineHeight={25} color="#8015E8">
@@ -63,9 +65,15 @@ const ButtonsWrapper = styled.div`
   display: flex;
   justify-content: space-around;
   width: 900px;
+  max-width: 100%;
+  @media (max-width: 768px) {
+    width: 80%;
+    display: block;
+  }
 `
 
 const StyledButton = styled.div`
+  margin: 20px 0px;
   button {
     text-transform: none;
   }
