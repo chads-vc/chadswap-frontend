@@ -26,7 +26,6 @@ const StyledCard = styled.div<StyledCardProps>`
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin: auto;
   
   ${props => (props.width && `width: ${props.width}px;`) }
   ${props => (props.height && `height: ${props.height}px;`) }
