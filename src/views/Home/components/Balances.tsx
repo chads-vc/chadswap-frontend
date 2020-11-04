@@ -10,10 +10,9 @@ import Spacer from '../../../components/Spacer'
 import Value from '../../../components/Value'
 import useAllEarnings from '../../../hooks/useAllEarnings'
 import useFarms from '../../../hooks/useFarms'
-import useTokenBalance from '../../../hooks/useTokenBalance'
 import useSushi from '../../../hooks/useSushi'
-import { getSushiAddress, getSushiSupply } from '../../../sushi/utils'
 import { getBalanceNumber } from '../../../utils/formatBalance'
+import useVestingBalance from '../../../hooks/useVesting'
 
 const PendingRewards: React.FC = () => {
 
@@ -38,33 +37,22 @@ const PendingRewards: React.FC = () => {
 }
 
 const Balances: React.FC = () => {
-  const [totalSupply, setTotalSupply] = useState<BigNumber>()
   const sushi = useSushi()
-  const sushiBalance = useTokenBalance(getSushiAddress(sushi))
+  const vesting = useVestingBalance()
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
-
-  useEffect(() => {
-    async function fetchTotalSupply() {
-      const supply = await getSushiSupply(sushi)
-      setTotalSupply(supply)
-    }
-    if (sushi) {
-      fetchTotalSupply()
-    }
-  }, [sushi, setTotalSupply])
 
   return (
     <StyledWrapper>
         <StyledBalances>
             <StyledBalance>
-              <StyledLabelValueWrapper>
-                <Label text="my stacy balance" />
+              <PendingRewards />
+              <div style={{'width': 7, 'height': 7}}/>
+               <StyledLabelValueWrapper>
+                <Label text="pending vesting" />
                 <Value
-                  value={!!account ? getBalanceNumber(sushiBalance) : 'Locked'}
+                  value={!!account ? getBalanceNumber(vesting) : 'Locked'}
                 />
               </StyledLabelValueWrapper>
-              <div style={{'width': 7, 'height': 7}}/>
-              <PendingRewards />
             </StyledBalance>
           </StyledBalances>
 

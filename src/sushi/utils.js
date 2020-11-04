@@ -35,6 +35,9 @@ export const getMasterChefContract = (sushi) => {
 export const getSushiContract = (sushi) => {
   return sushi && sushi.contracts && sushi.contracts.sushi
 }
+export const getVestingContract = (sushi) => {
+  return sushi && sushi.contracts && sushi.contracts.vesting
+}
 
 export const getFarms = (sushi) => {
   return sushi
@@ -188,6 +191,10 @@ export const getCherryPopAmount = async (sushiContract) => {
 
 export const getCherryPopRewardPercent = async (sushiContract) => {
   return sushiContract.methods.cherryPopBurnCallerRewardPct().call()
+}
+
+export const getVestingAmount = async (vestingContract, account) => {
+  return vestingContract.methods.lockOf(account).call()
 }
 
 export const getLastPopTime = async (sushiContract) => {

@@ -55,6 +55,9 @@ export const contractAddresses = {
   },
   emtrg: {
     1: '0xBd2949F67DcdC549c6Ebe98696449Fa79D988A9F',
+  },
+  vesting: {
+    1: '0x222207E931D7Bf38466C395DA30E632872a98aE6',
   }
 }
 
