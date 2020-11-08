@@ -12,7 +12,7 @@ interface ButtonProps {
   disabled?: boolean,
   href?: string,
   onClick?: () => void,
-  size?: 'sm' | 'md' | 'lg' | 'cs' | 'pc',
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'cs' | 'pc',
   text?: string,
   to?: string,
   variant?: 'default' | 'secondary' | 'tertiary'
@@ -69,6 +69,11 @@ const Button: React.FC<ButtonProps> = ({
       buttonPadding = spacing[5]
       buttonSize = 72
       fontSize = 33
+      break
+    case 'xl':
+      buttonPadding = spacing[5]
+      buttonSize = 100
+      fontSize = 49
       break
     case 'cs':
       buttonSize=40
