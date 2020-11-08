@@ -15,6 +15,7 @@ import theme from './theme'
 import Farms from './views/Farms'
 import Home from './views/Home'
 import Stake from './views/Stake'
+import NTFStake from './views/NTFStake'
 import SiteBackground from './components/SiteBackground'
 import PopCherry from './views/PopCherry'
 import ClaimLP from './views/ClaimLP'
@@ -52,6 +53,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/claimlp">
             <ClaimLP/>
+          </Route>
+          <Route path="/chads_nft_stake">
+            <NTFStake />
           </Route>
         </Switch>
       </StyledAppWrapper>
