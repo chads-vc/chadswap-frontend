@@ -2,7 +2,7 @@ import {ethers} from 'ethers'
 import Web3 from 'web3'
 import BigNumber from 'bignumber.js'
 import request from "request";
-import {bnToDec} from 'utils';
+// import {bnToDec} from 'utils';
 
 BigNumber.config({
   EXPONENTIAL_AT: 1000,
@@ -707,3 +707,7 @@ export const getMaxSupply = async () => {
   const data = await requestYam();
   return data.market_data.max_supply;
 };
+
+export const getTotalCopped = async (yam, cardId) => {
+  return yam.toBigN(await yam.contracts.chadsltd.methods.totalSupply(cardId).call())
+}
