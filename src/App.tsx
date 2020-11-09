@@ -10,12 +10,13 @@ import FarmsProvider from './contexts/Farms'
 import ModalsProvider from './contexts/Modals'
 import TransactionProvider from './contexts/Transactions'
 import SushiProvider from './contexts/SushiProvider'
+import YamProvider from './contexts/YamProvider'
 import useModal from './hooks/useModal'
 import theme from './theme'
 import Farms from './views/Farms'
 import Home from './views/Home'
 import Stake from './views/Stake'
-import NTFStake from './views/NTFStake'
+import NFTStake from './views/NFTStake'
 import SiteBackground from './components/SiteBackground'
 import PopCherry from './views/PopCherry'
 import ClaimLP from './views/ClaimLP'
@@ -55,7 +56,7 @@ const App: React.FC = () => {
             <ClaimLP/>
           </Route>
           <Route path="/chads_nft_stake">
-            <NTFStake />
+            <NFTStake />
           </Route>
         </Switch>
       </StyledAppWrapper>
@@ -75,11 +76,13 @@ const Providers: React.FC = ({ children }) => {
         }}
       >
         <SushiProvider>
-          <TransactionProvider>
-            <FarmsProvider>
-              <ModalsProvider>{children}</ModalsProvider>
-            </FarmsProvider>
-          </TransactionProvider>
+          <YamProvider>
+            <TransactionProvider>
+              <FarmsProvider>
+                <ModalsProvider>{children}</ModalsProvider>
+              </FarmsProvider>
+            </TransactionProvider>
+          </YamProvider>
         </SushiProvider>
       </UseWalletProvider>
     </ThemeProvider>
