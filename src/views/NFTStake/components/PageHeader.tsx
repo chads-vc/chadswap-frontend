@@ -7,13 +7,13 @@ const PageHeader = () => (
   <Container size="lg">
     <StyledPageHeader>
       <StyledTitle>
-        <StyledText color="#DE43CF" fontSize={133}>Stake and burn</StyledText>
+        <StyledText color="#DE43CF" fontSize={133} height={100}>Stake and burn</StyledText>
       </StyledTitle>
       <StyledHiddenTitle>
-        <StyledText color="#8015E8" fontSize={90}>Chads of Defi NFTs</StyledText>
+        <StyledText color="#8015E8" fontSize={90} height={70}>Chads of Defi NFTs</StyledText>
       </StyledHiddenTitle>
       <StyledSubtitle>
-        <StyledText color="#DE43CF" fontSize={60}>for stacy yield bonuses</StyledText>
+        <StyledText color="#DE43CF" fontSize={60} height={40}>for stacy yield bonuses</StyledText>
       </StyledSubtitle>
       <StyledButton>
         <Button href={`https://chads.limited/`} size="xl" text="mint NFTs"/>
@@ -26,6 +26,11 @@ const StyledButton = styled.div`
   margin-top: 80px;
   button {
     text-transform: none;
+  }
+  @media (max-width: 576px) {
+    button {
+      height: 80px;
+    }
   }
 `
 
@@ -44,35 +49,70 @@ const StyledTitle = styled.div`
   @media (max-width: 970px) {
     div {
       font-size: 100px;
+      height: 70px;
+    }
+  }
+  @media (max-width: 768px) {
+    div {
+      font-size: 70px;
+      height: 50px;
+    }
+  }
+  @media (max-width: 576px) {
+    div {
+      font-size: 50px;
+      height: 40px;
     }
   }
 `
 
-const StyledHiddenTitle = styled.h3`
+const StyledHiddenTitle = styled.div`
   font-weight: 400;
   white-space: nowrap;
   overflow: visible;
   margin: 0;
-  margin-top: -75px;
   z-index: -1;
   @media (max-width: 970px) {
-    margin-top: -55px;
     div {
       font-size: 68px;
+      height: 50px;
+    }
+  }
+  @media (max-width: 768px) {
+    div {
+      font-size: 50px;
+      height: 40px;
+    }
+  }
+  @media (max-width: 576px) {
+    div {
+      font-size: 40px;
+      height: 30px;
     }
   }
 `
 
-const StyledSubtitle = styled.h3`
+const StyledSubtitle = styled.div`
   font-weight: 400;
   white-space: nowrap;
   overflow: visible;
   margin: 0;
-  margin-top: -50px;
   @media (max-width: 970px) {
-    margin-top: -40px;
     div {
       font-size: 45px;
+      height: 30px;
+    }
+  }
+  @media (max-width: 768px) {
+    div {
+      font-size: 35px;
+      height: 20px;
+    }
+  }
+  @media (max-width: 576px) {
+    div {
+      font-size: 25px;
+      height: 15px;
     }
   }
 `
@@ -80,7 +120,7 @@ const StyledSubtitle = styled.h3`
 interface StyledTextProps {
   color: string
   fontSize: number
-  lineHeight?: number
+  height?: number
 }
 
 const StyledText = styled.div<StyledTextProps>`
@@ -88,7 +128,7 @@ const StyledText = styled.div<StyledTextProps>`
   color: ${(props) => props.color};
   flex:1;
   font-size: ${(props) => props.fontSize}px;
-  line-height: ${(props) => props.lineHeight ? props.lineHeight + 'px' : '100%'};
+  height: ${(props) => props.height ? props.height + 'px' : '100%'};
   text-shadow: #c8c8c8 1px 1px 0px, #b4b4b4 0px 2px 0px, #a0a0a0 0px 3px 0px, rgba(140, 140, 140, 0.498039) 0px 4px 0px, #787878 0px 0px 0px, rgba(0, 0, 0, 0.498039) 0px 5px 10px;
 }
 `

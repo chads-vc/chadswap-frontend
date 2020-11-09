@@ -2,13 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 import Card from './Card';
 
-interface CardsProps {
-  type: 'commons' | 'rares' | 'limited',
-  description: string
+interface CardProps {
+  id: number,
+  copped: number
 }
 
-const Cards: React.FC<CardsProps> = ({ type, description }) => {
+interface CardsProps {
+  type: 'commons' | 'rares' | 'limited',
+  description: string,
+  cards: Array<CardProps>
+}
 
+const Cards: React.FC<CardsProps> = ({ type, description, cards }) => {
+  
   return (
     <StyledCards>
       <CardsHeader>
@@ -30,9 +36,10 @@ const Cards: React.FC<CardsProps> = ({ type, description }) => {
         )}
       </CardsHeader>
       <CardsContent>
-        <Card imgSrc="https://api.chads.vc/img/1.gif" status={0} />
-        <Card imgSrc="https://api.chads.vc/img/2.gif" status={1} />
-        <Card imgSrc="https://api.chads.vc/img/3.gif" status={2} />
+        {cards.map((card:CardProps) => (
+            <Card key={card.id} data={card}/>
+          )
+        )}
       </CardsContent>
     </StyledCards>
   )
@@ -53,9 +60,26 @@ const CardsHeader = styled.div`
 `;
 
 const StyledTitle = styled.div`
+  div {
+    height: 90px;
+  }
   @media (max-width: 970px) {
     div {
       font-size: 85px;
+      height: 70px;
+    }
+  }
+  @media (max-width: 768px) {
+    div {
+      font-size: 70px;
+      height: 55px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    div {
+      font-size: 50px;
+      height: 40px;
     }
   }
 `
@@ -65,11 +89,19 @@ const StyledDescription = styled.h3`
   white-space: nowrap;
   overflow: visible;
   margin: 0;
-  margin-top: -30px;
   @media (max-width: 970px) {
-    margin-top: -22px;
     div {
       font-size: 30px;
+    }
+  }
+  @media (max-width: 768px) {
+    div {
+      font-size: 25px;
+    }
+  }
+  @media (max-width: 576px) {
+    div {
+      font-size: 20px;
     }
   }
 `

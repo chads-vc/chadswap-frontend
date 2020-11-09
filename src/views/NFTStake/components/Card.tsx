@@ -6,28 +6,42 @@ import Value from '../../../components/Value'
 import Label from '../../../components/Label'
 import gradientBg from '../../../assets/img/small-button-bevel.png'
 
-interface CardProps {
-  imgSrc: string,
-  status: number
+interface DataProps {
+  id: number,
+  copped: number
 }
 
-const Card: React.FC<CardProps> = ({ imgSrc, status }) => {
+interface CardProps {
+  data: DataProps
+}
 
+const getCardStatus = (card: DataProps):number => {
+  let status = 0
+  if (card.copped > 0) status = 1
+
+  return status
+}
+
+const Card: React.FC<CardProps> = ({ data }) => {
+  
   const onClickStake = () => {
     console.log('stake & burn button clicking!')
     // TODO: Call a function on our smart contract
   }
 
+  const imgUrl = `https://api.chads.vc/img/${data.id}.gif`
+  const status = getCardStatus(data)
+
   return (
     <StyledCard>
       <StyledCardContent>
-        <img src={imgSrc} alt="gif" />
+        <img src={imgUrl} alt="gif" />
       </StyledCardContent>
       <StyleCardFooter>
         {status === 0 && (
           <>
             <StyledValue>
-              <Value value={0} decimals={0}/>
+              <Value value={data.copped} decimals={0}/>
               <span>copped</span>
             </StyledValue>
             <Button href={`https://chads.limited/`} size="pc" text="mint"/>
@@ -36,7 +50,7 @@ const Card: React.FC<CardProps> = ({ imgSrc, status }) => {
         {status === 1 && (
           <>
             <StyledValue>
-              <Value value={1} decimals={0}/>
+              <Value value={data.copped} decimals={0}/>
               <span>copped</span>
             </StyledValue>
             <Button size="pc" text="stake & burn" onClick={onClickStake}/>
