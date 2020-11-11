@@ -708,6 +708,6 @@ export const getMaxSupply = async () => {
   return data.market_data.max_supply;
 };
 
-export const getTotalCopped = async (yam, cardId) => {
-  return yam.toBigN(await yam.contracts.chadsltd.methods.totalSupply(cardId).call())
+export const getTotalCopped = async (yam, ownerAddr, cardId) => {
+  return yam.toBigN(await yam.contracts.chadsltd.methods.balanceOf(ownerAddr, cardId).call())
 }

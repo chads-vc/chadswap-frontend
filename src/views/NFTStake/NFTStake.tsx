@@ -38,7 +38,7 @@ const NFTStake: React.FC = () => {
   const fetchTotalCopped = useCallback(async () => {
     const _chadletsCards = [...chadletsCards]
     for (let i = 0; i < _chadletsCards.length; i++) {
-      const cardCopped = await getTotalCopped(yam, _chadletsCards[i].id)
+      const cardCopped = await getTotalCopped(yam, account, _chadletsCards[i].id)
       _chadletsCards[i].copped = cardCopped.toNumber()
     }
     setChadletsCards(_chadletsCards)
