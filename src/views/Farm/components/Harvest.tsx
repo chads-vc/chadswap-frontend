@@ -55,7 +55,7 @@ const Harvest: React.FC<HarvestProps> = ({ fpid, tokenSymbol }) => {
                 <Label fontSize={24} fontWeight={900} text="25%" />
                 <Label fontSize={13} fontWeight={600} text="yield bonus" />
                 <Label fontSize={24} fontWeight={900} text="3" />
-                <Label fontSize={13} fontWeight={600} text="NTFs staked" />
+                <Label fontSize={13} fontWeight={600} text="NFTs staked" />
               </StyledCardBadgeInner>
             </StyledCardBadge>
           )}
