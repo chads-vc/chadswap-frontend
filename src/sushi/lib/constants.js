@@ -58,6 +58,9 @@ export const contractAddresses = {
   },
   vesting: {
     1: '0x222207E931D7Bf38466C395DA30E632872a98aE6',
+  },
+  cherryPop: {
+    1: '0xe1b39Cb929063A09f3068Ba72F055f94B7A6E763',
   }
 }
 

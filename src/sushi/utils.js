@@ -38,6 +38,9 @@ export const getSushiContract = (sushi) => {
 export const getVestingContract = (sushi) => {
   return sushi && sushi.contracts && sushi.contracts.vesting
 }
+export const getCherryContract = (sushi) => {
+  return sushi && sushi.contracts && sushi.contracts.cherryPop
+}
 
 export const getFarms = (sushi) => {
   return sushi

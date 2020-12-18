@@ -3,14 +3,14 @@ import { useWallet } from 'use-wallet'
 import { Contract } from 'web3-eth-contract'
 import { cherryPop } from '../sushi/utils'
 
-const useCherryPop = (sushiContract: Contract) => {
+const useCherryPop = (cherryContract: Contract) => {
   const { account } = useWallet()
 
   const handleCherryPop= useCallback(async () => {
-    const txHash = await cherryPop(sushiContract, account)
+    const txHash = await cherryPop(cherryContract, account)
     console.log(txHash)
     return txHash
-  }, [account, sushiContract])
+  }, [account, cherryContract])
 
   return { onCherryPop: handleCherryPop }
 }

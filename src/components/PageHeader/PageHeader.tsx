@@ -37,15 +37,21 @@ const PageHeader: React.FC<PageHeaderProps> = ({ tokenSymbol, title, tokenAddres
       <StyledPageHeader>
         <StyledIcon backgroundUrl={lp_images[tokenSymbol]}/>
         <StyledTitle>{title}-ETH</StyledTitle>
-        <StyledButton>
-          <Button href={`https://app.uniswap.org/#/add/${tokenAddress}/ETH`} size="lg" text="add liquidity"/>
-        </StyledButton>
-          { tokenSymbol === 'STACY' && 
-            <StyledText fontSize={25} lineHeight={25} color="#8015E8">
-              all liquidity added to this pool is locked forever
-            </StyledText>
-          }
- 
+        <ButtonsWrapper>
+          <StyledButton>
+            <Button href={`https://app.uniswap.org/#/add/${tokenAddress}/ETH`} size="lg" text="add liquidity"/>
+          </StyledButton>
+          {tokenSymbol === 'CHADS' && (
+            <StyledButton>
+              <Button size="lg" text="stake NFT"/>
+            </StyledButton>
+          )}
+        </ButtonsWrapper>
+        { tokenSymbol === 'STACY' && 
+          <StyledText fontSize={25} lineHeight={25} color="#8015E8">
+            all liquidity added to this pool is locked forever
+          </StyledText>
+        } 
      </StyledPageHeader>
     </Container>
   )
@@ -55,7 +61,23 @@ interface StyledIconProps {
   backgroundUrl: string
 }
 
-const StyledButton = styled.div``
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 900px;
+  max-width: 100%;
+  @media (max-width: 768px) {
+    width: 80%;
+    display: block;
+  }
+`
+
+const StyledButton = styled.div`
+  margin: 20px 0px;
+  button {
+    text-transform: none;
+  }
+`
 
 const StyledPageHeader = styled.div`
   align-items: center;

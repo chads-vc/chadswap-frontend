@@ -5,6 +5,7 @@ import SushiAbi from './abi/sushi.json'
 import UNIV2PairAbi from './abi/uni_v2_lp.json'
 import WETHAbi from './abi/weth.json'
 import VestingAbi from './abi/vesting.json'
+import CherryPopAbi from './abi/cherryPop.json'
 
 import {
   contractAddresses,
@@ -27,6 +28,7 @@ export class Contracts {
     this.masterChef = new this.web3.eth.Contract(MasterChefAbi)
     this.weth = new this.web3.eth.Contract(WETHAbi)
     this.vesting = new this.web3.eth.Contract(VestingAbi)
+    this.cherryPop = new this.web3.eth.Contract(CherryPopAbi)
 
     this.pools = supportedPools.map((pool) =>
       Object.assign(pool, {
@@ -52,6 +54,7 @@ export class Contracts {
     setProvider(this.masterChef, contractAddresses.masterChef[networkId])
     setProvider(this.weth, contractAddresses.weth[networkId])
     setProvider(this.vesting, contractAddresses.vesting[networkId])
+    setProvider(this.cherryPop, contractAddresses.cherryPop[networkId])
 
     this.pools.forEach(
       ({ lpContract, lpAddress, tokenContract, tokenAddress }) => {

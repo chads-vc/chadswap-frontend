@@ -12,7 +12,7 @@ import useAllEarnings from '../../../hooks/useAllEarnings'
 import useFarms from '../../../hooks/useFarms'
 import useTokenBalance from '../../../hooks/useTokenBalance'
 import useSushi from '../../../hooks/useSushi'
-import { getChadsAddress, getEmtrgAddress, getSushiAddress, getSushiSupply, getSushiContract } from '../../../sushi/utils'
+import { getChadsAddress, getEmtrgAddress, getCherryContract } from '../../../sushi/utils'
 
 import cherry from '../../../assets/img/cherry.gif'
 import useCherryPop from '../../../hooks/useCherryPop'
@@ -22,7 +22,7 @@ const PopCherryCard: React.FC = () => {
   const sushi = useSushi()
   const { account, ethereum }: { account: any; ethereum: any } = useWallet()
 
-  const {onCherryPop} = useCherryPop(getSushiContract(sushi))
+  const {onCherryPop} = useCherryPop(getCherryContract(sushi))
 
   const [pendingTx, setPendingTx] = useState(false)
 
