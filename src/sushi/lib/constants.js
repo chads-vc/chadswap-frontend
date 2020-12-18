@@ -55,6 +55,9 @@ export const contractAddresses = {
   },
   emtrg: {
     1: '0xBd2949F67DcdC549c6Ebe98696449Fa79D988A9F',
+  },
+  cherryPop: {
+    1: '0xe1b39Cb929063A09f3068Ba72F055f94B7A6E763',
   }
 }
 
