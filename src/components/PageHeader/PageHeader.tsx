@@ -41,7 +41,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ tokenSymbol, title, tokenAddres
           <StyledButton>
             <Button href={`https://app.uniswap.org/#/add/${tokenAddress}/ETH`} size="lg" text="add liquidity"/>
           </StyledButton>
-          {tokenSymbol === 'CHADS' && (
+          {(false && tokenSymbol === 'CHADS') && (
             <StyledButton>
               <Button size="lg" text="stake NFT"/>
             </StyledButton>
